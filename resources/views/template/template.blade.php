@@ -37,7 +37,7 @@
                     <i class="fas fa-user-graduate"></i>
                 </div>
                 <div class="sidebar-brand-text mx-3"> 
-                    My Presence
+                    MyPresence
                                     {{-- @if (Str::length(Auth::guard('siswa')->user())>0)
                                     <div>{{Auth::guard('siswa')->user()->namasiswa}}</div>
                                     @elseif (Str::length(Auth::guard('user')->user())>0)
@@ -215,7 +215,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2020</span>
+                        <span>Copyright &copy; MyPresence 2020</span>
                     </div>
                 </div>
             </footer>
