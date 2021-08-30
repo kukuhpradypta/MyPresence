@@ -47,7 +47,7 @@
                                     <td>{{ $siswa->nisn }}</td>
                                     <td>{{ $siswa->kelas }}</td>
                                     <td class="text-center">
-                                        <img src="{{ Storage::url('public/siswas/').$siswa->foto }}" class="rounded" style="width: 150px">
+                                        <img src="{{ Storage::url('public/siswas/').$siswa->foto }}" class="rounded" style="max-width: 150px;height:100px;">
                                     </td>
                                     <td>{{ $siswa->email }}</td>
                                     <td class="text-center">

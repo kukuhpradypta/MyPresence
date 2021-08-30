@@ -46,7 +46,7 @@
                                     <td>{{ $guru->nign }}</td>
                                     <td>{{ $guru->role }}</td>
                                     <td class="text-center">
-                                        <img src="{{ Storage::url('public/gurus/').$guru->foto }}" class="rounded" style="width: 150px">
+                                        <img src="{{ Storage::url('public/gurus/').$guru->foto }}" class="rounded" style="max-width: 150px;height:100px;">
                                     </td>
                                     <td>{{ $guru->email }}</td>
                                     <td class="text-center">

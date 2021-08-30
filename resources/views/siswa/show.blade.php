@@ -26,7 +26,7 @@
                                     </tr>
                                     <tr>
                                         <td>Foto</td>
-                                        <td><img src="{{ Storage::url('public/siswas/').$siswa->foto }}" class="rounded" style="width: 150px"></td>
+                                        <td><img src="{{ Storage::url('public/siswas/').$siswa->foto }}" class="rounded" style="max-width: 350px;height:200px;"></td>
                                     </tr>
 
                                     <tr>
