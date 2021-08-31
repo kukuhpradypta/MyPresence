@@ -18,8 +18,7 @@ class CreateGurusTable extends Migration
             $table->string('nign');
             $table->string('namaguru');
             $table->string('Foto');
-            // $table->string('jabatan');
-            $table->enum('role', ['kurikulum','bk','kesiswaan', 'siswa','guru','walas'])->default('guru');
+            $table->string('role');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

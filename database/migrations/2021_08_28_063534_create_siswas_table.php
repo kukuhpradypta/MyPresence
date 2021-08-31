@@ -17,7 +17,7 @@ class CreateSiswasTable extends Migration
             $table->id();
             $table->string('namasiswa');
             $table->string('nisn');
-            $table->string('kelas');
+            $table->foreignId('kelas_id');
             $table->string('foto');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();

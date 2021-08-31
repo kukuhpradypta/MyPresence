@@ -20,6 +20,14 @@
     <!-- Custom styles for this template-->
     <link href="{{asset('template/css/sb-admin-2.min.css')}}" rel="stylesheet">
 
+    <style>
+        .oioi:hover{
+            -ms-transform: scale(1.05); /* IE 9 */
+            -webkit-transform: scale(1.05); /* Safari 3-8 */
+            transform: scale(1.05);
+        }
+    </style>
+
 </head>
 
 <body id="page-top">
@@ -50,7 +58,7 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item">
+            <li class="nav-item {{request()->is('/')? 'active':''}}">
                 <a class="nav-link" href="/">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
@@ -64,24 +72,30 @@
                 Interface
             </div>
 
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+            @if (Str::length(Auth::guard('siswa')->user())>0)
+            
+            @elseif (Str::length(Auth::guard('guru')->user()->role == 'kurikulum' or Auth::guard('guru')->user()->role == 'guru')>0)
+            <li class="nav-item {{request()->is('siswa') || request()->is('guru') ? 'active':''}}">
+                <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-user"></i>
                     <span>Data Master</span>
                 </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapseTwo" class="collapse {{request()->is('siswa') || request()->is('guru') ? 'show':''}}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         {{-- <h6 class="collapse-header">Custom Components:</h6> --}}
-                        <a class="collapse-item" href="/siswa">Data Siswa</a>
-                        <a class="collapse-item" href="/guru">Data Guru</a>
+                        <a class="{{request()->is('siswa*') ? 'active':''}} collapse-item" href="/siswa">Data Siswa</a>
+                        <a class="{{request()->is('guru*') ? 'active':''}} collapse-item" href="/guru">Data Guru</a>
+                        <a class="{{request()->is('kelas*') ? 'active':''}} collapse-item" href="/kelas">Data Kelas</a>
                     </div>
                 </div>
             </li>
+            @endif
+
+            <!-- Nav Item - Pages Collapse Menu -->
 
             <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
+            <li class="nav-item ">
                 <a class="nav-link collapsed" href="#">
                     <i class="fas fa-fw fa-calendar-plus"></i>
                     <span>Presensi Siswa</span>
@@ -112,7 +126,7 @@
             <div id="content">
 
                 <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow-sm">
 
                     <!-- Sidebar Toggle (Topbar) -->
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -158,14 +172,16 @@
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">
                                     @if (Str::length(Auth::guard('siswa')->user())>0)
                                     <div>{{Auth::guard('siswa')->user()->namasiswa}}</div>
-                                    @elseif (Str::length(Auth::guard('user')->user())>0)
-                                    <div>{{Auth::guard('user')->user()->name}}</div>
                                     @elseif (Str::length(Auth::guard('guru')->user())>0)
                                     <div>{{Auth::guard('guru')->user()->namaguru}}</div>
                                     @endif
                                 </span>
                                 <img class="img-profile rounded-circle"
-                                    src="{{asset('template/img/undraw_profile.svg')}}">
+                                    src="@if (Str::length(Auth::guard('siswa')->user())>0)
+                                    {{ Storage::url('public/gurus/').Auth::guard('siswa')->user()->foto}}
+                                    @elseif (Str::length(Auth::guard('guru')->user())>0)
+                                    {{ Storage::url('public/gurus/').Auth::guard('guru')->user()->Foto}}
+                                    @endif">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"

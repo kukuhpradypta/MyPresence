@@ -45,7 +45,7 @@
                                     <td>{{$loop->iteration}}</td>
                                     <td>{{ $siswa->namasiswa }}</td>
                                     <td>{{ $siswa->nisn }}</td>
-                                    <td>{{ $siswa->kelas }}</td>
+                                    <td>{{ $siswa->kelas->name }}</td>
                                     <td class="text-center">
                                         <img src="{{ Storage::url('public/siswas/').$siswa->foto }}" class="rounded" style="max-width: 150px;height:100px;">
                                     </td>

@@ -19,40 +19,32 @@
             <div class="col-md-12">
                 <div class="card shadow mb-4">
                 <div class="card-header py-3">                   
-                            <h3 class="m-0 font-weight-bold text-dark">Data Guru</h3>
+                            <h3 class="m-0 font-weight-bold text-dark">Data Kelas</h3>
                         </div>
                 <div class="card border-0 shadow rounded">
                     <div class="card-body">
-                        <a href="{{ route('guru.create') }}" class="btn btn-md btn-success mb-3"><i class="fas fa-user-plus"> Tambah Guru</i></a>
+                        <a href="{{ route('kelas.create') }}" class="btn btn-md btn-success mb-3"><i class="fas fa-user-plus"> Tambah Kelas</i></a>
                         
                         <table class="table table-bordered">
                             <thead>  
                               <tr>
                                 <th scope="col">NO</th>
-                                <th scope="col">nama</th>
-                                <th scope="col">nign</th>
-                                <th scope="col">role</th>
-                                <th scope="col">Foto</th>
-                                <th scope="col">email</th>
+                                <th scope="col">Nama Kelas</th>
+                                <th scope="col">Nama Walas</th>
                                 <th scope="col">AKSI</th>
                               </tr>
                             </thead> 
                             <tbody>
                                 
-                              @forelse ($gurus as $guru)
+                              @forelse ($kelastbs as $kelas)
                                 <tr>
                                     <td>{{$loop->iteration}}</td>
-                                    <td>{{ $guru->namaguru }}</td>
-                                    <td>{{ $guru->nign }}</td>
-                                    <td>{{ $guru->role }}</td>
+                                    <td>{{ $kelas->name }}</td>
+                                    <td>{{ $kelas->walas }}</td>
                                     <td class="text-center">
-                                        <img src="{{ Storage::url('public/gurus/').$guru->Foto }}" class="rounded" style="width: 150px">
-                                    </td>
-                                    <td>{{ $guru->email }}</td>
-                                    <td class="text-center">
-                                        <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('guru.destroy', $guru->id) }}" method="POST">
-                                            <a href="{{ route('guru.edit', $guru->id) }}" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a>
-                                            <a href="{{ route('guru.show', $guru->id) }}" class="btn btn-sm btn-success"><i class="fas fa-search"></i></a>
+                                        <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('kelas.destroy', $kelas->id) }}" method="POST">
+                                            <a href="{{ route('kelas.edit', $kelas->id) }}" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a>
+                                            <a href="{{ route('kelas.show', $kelas->id) }}" class="btn btn-sm btn-success"><i class="fas fa-search"></i></a>
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
@@ -61,12 +53,11 @@
                                 </tr>
                               @empty
                                   <div class="alert alert-danger">
-                                      Data guru belum Tersedia.
+                                      Data kelas belum Tersedia.
                                   </div>
                               @endforelse
                             </tbody>
                           </table>  
-                          {{ $gurus->links() }}
                     </div>
                 </div>
                 </div>

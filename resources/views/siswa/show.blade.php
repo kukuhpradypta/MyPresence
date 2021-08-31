@@ -22,7 +22,7 @@
                                     </tr>
                                     <tr>
                                         <td>Kelas</td>
-                                        <td>{{ old('kelas', $siswa->kelas) }}</td>
+                                        <td>{{ old('kelas', $siswa->kelas->name) }}</td>
                                     </tr>
                                     <tr>
                                         <td>Foto</td>

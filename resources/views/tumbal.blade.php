@@ -6,14 +6,10 @@
             <h1 class="text-5xl text-white font-extrabold">Aplikasi MyPersence</h1>
         </div>
         </div>
-        
         <div class="bg-white" style="background-color: white">
-            
             <x-auth-card>
-
                 <x-slot name="logo" style="display: none;">
                     <a href="/">
-                        <h1 class="text-3xl text-black font-extrabold">SIGN IN</h1>
                         {{-- <x-application-logo class="w-20 h-20 fill-current text-gray-500" /> --}}
                     </a>
                 </x-slot>
@@ -23,7 +19,7 @@
 
                 <!-- Validation Errors -->
                 <x-auth-validation-errors class="mb-4" :errors="$errors" />
-                
+
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
 

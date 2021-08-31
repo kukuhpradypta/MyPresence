@@ -1,0 +1,4 @@
+App\Models\Kelas::create([
+    'name' => 'XII RPL 3',
+    'walas' => 'Pak Dwi'
+])

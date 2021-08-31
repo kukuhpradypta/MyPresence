@@ -17,11 +17,19 @@ use Illuminate\Support\Facades\Route;
 //     return view('template.template');
 // });
 
-Route::get('/', function () {
-    return view('dashboard');
-})->middleware(['auth:user,siswa,guru'])->name('dashboard');
+
+Route::middleware(['auth:user,siswa,guru'])->group(function () {
+    Route::get('/', function () {
+        return view('dashboard');
+    })->name('dashboard');
+    
+});
 
 require __DIR__.'/auth.php';
 
-Route::resource('siswa', SiswaController::class);
-Route::resource('guru', GuruController::class);
+Route::middleware(['auth:guru','jabatanRole:kurikulum,guru'])->group(function () {
+    
+    Route::resource('siswa', SiswaController::class);
+    Route::resource('guru', GuruController::class);
+    Route::resource('kelas', KelasController::class);
+});

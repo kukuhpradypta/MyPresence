@@ -38,17 +38,20 @@
                                 @enderror
                             </div>
 
+
                             <div class="form-group">
-                                <label class="font-weight-bold">Kelas</label>
-                                <input type="text" class="form-control @error('kelas') is-invalid @enderror" name="kelas" value="{{ old('kelas', $siswa->kelas) }}">
-                            
-                                <!-- error message untuk kelas -->
-                                @error('kelas')
+                            <label class="font-weight-bold">kelas</label>
+                            <select name="kelas_id" class="custom-select form-control-border border-width-2" id="exampleSelectBorderWidth2">
+                                @foreach ($kelastb as $kelas) 
+                                    <option value="{{$kelas->id }}">{{ $kelas->name }}</option>
+                                @endforeach
+                            </select>
+                                 @error('kelas_id')
                                     <div class="alert alert-danger mt-2">
                                         {{ $message }}
                                     </div>
                                 @enderror
-                            </div>
+                            </div> 
 
                             <div class="form-group">
                                 <label class="font-weight-bold">Foto</label>

@@ -26,20 +26,17 @@ public function store(Request $request)
         'namaguru'     => 'required',
         'nign'     => 'required',
         'role'     => 'required',
-        'foto'     => 'required|image|mimes:png,jpg,jpeg',
         'email'     => 'required',
         'password'   => 'required'
     ]);
 
     //upload foto
-    $foto = $request->file('foto');
-    $foto->storeAs('public/gurus', $foto->hashName());
 
     $guru = Guru::create([
         'namaguru'     => $request->namaguru,
         'nign'     => $request->nign,
         'role'     => $request->role,
-        'foto'     => $foto->hashName(),
+        'foto'     => 'default.png',
         'email'     => $request->email,
         'password' => Hash::make($request->password)
     ]);

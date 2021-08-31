@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Siswa;
+use App\Models\Kelas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Hash;
@@ -17,7 +18,8 @@ class SiswaController extends Controller
 
     public function create()
 {
-    return view('siswa.create');
+    
+    return view('siswa.create', [ 'kelastb' => Kelas::all() ]);
 }
 
 public function store(Request $request)
@@ -25,21 +27,18 @@ public function store(Request $request)
     $this->validate($request, [
         'namasiswa'     => 'required',
         'nisn'     => 'required',
-        'kelas'     => 'required',
-        'foto'     => 'required|image|mimes:png,jpg,jpeg',
+        'kelas_id'     => 'required',
         'email'     => 'required',
         'password'   => 'required'
     ]);
 
     //upload foto
-    $foto = $request->file('foto');
-    $foto->storeAs('public/siswas', $foto->hashName());
 
     $siswa = Siswa::create([
         'namasiswa'     => $request->namasiswa,
         'nisn'     => $request->nisn,
-        'kelas'     => $request->kelas,
-        'foto'     => $foto->hashName(),
+        'kelas_id'     => $request->kelas_id,
+        'foto'     => 'default.png',
         'email'     => $request->email,
         'password' => Hash::make($request->password)
     ]);
@@ -53,7 +52,7 @@ public function store(Request $request)
 }
 public function edit(Siswa $siswa)
 {
-    return view('siswa.edit', compact('siswa'));
+     return view('siswa.edit', [ 'kelastb' => Kelas::all() ],compact('siswa'));
 }
 
 public function update(Request $request, Siswa $siswa)
@@ -61,7 +60,7 @@ public function update(Request $request, Siswa $siswa)
     $this->validate($request, [
         'namasiswa'     => 'required',
         'nisn'     => 'required',
-        'kelas'     => 'required',
+        'kelas_id'     => 'required',
         'email'     => 'required',
     ]);
 
@@ -73,7 +72,7 @@ public function update(Request $request, Siswa $siswa)
         $siswa->update([
         'namasiswa'     => $request->namasiswa,
         'nisn'     => $request->nisn,
-        'kelas'     => $request->kelas,
+        'kelas_id'     => $request->kelas_id,
         'email'     => $request->email,
         ]);
 
@@ -82,7 +81,7 @@ public function update(Request $request, Siswa $siswa)
             $siswa->update([
             'namasiswa'     => $request->namasiswa,
             'nisn'     => $request->nisn,
-            'kelas'     => $request->kelas,
+            'kelas_id'     => $request->kelas_id,
             'email'     => $request->email,
             'password' => Hash::make($request->password)
             ]);
@@ -98,7 +97,7 @@ public function update(Request $request, Siswa $siswa)
             $siswa->update([
             'namasiswa'     => $request->namasiswa,
             'nisn'     => $request->nisn,
-            'kelas'     => $request->kelas,
+            'kelas_id'     => $request->kelas_id,
             'foto'     => $foto->hashName(),
             'email'     => $request->email,
             ]);
@@ -115,7 +114,7 @@ public function update(Request $request, Siswa $siswa)
         $siswa->update([
             'namasiswa'     => $request->namasiswa,
             'nisn'     => $request->nisn,
-            'kelas'     => $request->kelas,
+            'kelas_id'     => $request->kelas_id,
             'foto'     => $foto->hashName(),
             'email'     => $request->email,
             'password'   => Hash::make($request->password)
