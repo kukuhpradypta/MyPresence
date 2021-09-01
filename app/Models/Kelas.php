@@ -11,13 +11,17 @@ class Kelas extends Model
     protected $table = 'kelastbs';
     protected $fillable = [
         'name',
-        'walas',
+        'walas_id',
            
      ];
 
      public function siswa()
     {
         return $this->hasMany(Siswa::class);
+    }
+         public function guru()
+    {
+        return $this->belongsTo(Guru::class);
     }
 }
 
