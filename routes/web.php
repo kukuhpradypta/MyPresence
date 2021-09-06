@@ -33,3 +33,5 @@ Route::middleware(['auth:guru','jabatanRole:kurikulum,guru'])->group(function ()
     Route::resource('guru', GuruController::class);
     Route::resource('kelas', KelasController::class);
 });
+use App\Http\Controllers\GuruController;
+Route::get('/search', [GuruController::class, 'search'])->name('search');

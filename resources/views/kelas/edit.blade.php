@@ -10,7 +10,7 @@
             <div class="col-md-12">
                 <div class="card border-0 shadow rounded">
                     <div class="card-body">
-                        <form action="{{ route('guru.update', $kela->id) }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('kelas.update', $kela->id) }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
 
@@ -26,20 +26,22 @@
                                 @enderror
                             </div>
                             
-                                <div class="form-group">
-                                <label class="font-weight-bold">Nama Walas</label>
-                                <input type="text" class="form-control @error('walas') is-invalid @enderror" name="walas" value="{{ old('walas', $kela->walas) }}">
-                            
-                                <!-- error message untuk walas -->
-                                @error('walas')
+                              <div class="form-group">
+                            <label class="font-weight-bold">Nama Walas</label>
+                            <select name="walas_id" class="custom-select form-control-border border-width-2" id="exampleSelectBorderWidth2">
+                                @foreach ($walas as $kelas) 
+                                    <option value="{{$kelas->namaguru }}">{{ $kelas->namaguru }}</option>
+                                @endforeach
+                            </select>
+                                 @error('kelas_id')
                                     <div class="alert alert-danger mt-2">
                                         {{ $message }}
                                     </div>
                                 @enderror
-                            </div>
+                            </div> 
 
                             <button type="submit" class="btn btn-md btn-primary"><i class="fas fa-edit"> Edit</i></button>
-                             <a href="{{ route('guru.index') }}" class="btn btn-md btn-success"><i class="fas fa-backspace"> Kembali</i></a>
+                             <a href="{{ route('kelas.index') }}" class="btn btn-md btn-success"><i class="fas fa-backspace"> Kembali</i></a>
                         </form> 
                     </div>
                 </div>

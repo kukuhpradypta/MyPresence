@@ -26,16 +26,19 @@
                                 @enderror
 
                             </div>
-                              <div class="form-group">
-                                <label class="font-weight-bold">Nama Walas</label>
-                                <input type="text" class="form-control @error('walas') is-invalid @enderror" name="walas" placeholder="Masukan walas kelas">
-
-                                 @error('walas')
+                            <div class="form-group">
+                            <label class="font-weight-bold">Nama Walas</label>
+                            <select name="walas_id" class="custom-select form-control-border border-width-2" id="exampleSelectBorderWidth2">
+                                @foreach ($walas as $kelas) 
+                                    <option value="{{$kelas->namaguru }}">{{ $kelas->namaguru }}</option>
+                                @endforeach
+                            </select>
+                                 @error('kelas_id')
                                     <div class="alert alert-danger mt-2">
                                         {{ $message }}
                                     </div>
                                 @enderror
-                            </div>
+                            </div> 
                               <button type="submit" name="submit" class="btn btn-md btn-primary">Simpan</button>
                               <a href="/kelas" class="btn btn-success">Kembali</a>
                         </form> 

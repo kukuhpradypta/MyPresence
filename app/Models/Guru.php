@@ -35,4 +35,12 @@ class Guru extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+       public function kelas()
+    {
+        return $this->hasMany(Kelas::class);
+    }
+       public function jabatan()
+    {
+        return $this->belongsTo(Jabatan::class);
+    }
 }

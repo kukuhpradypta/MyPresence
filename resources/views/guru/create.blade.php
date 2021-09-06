@@ -45,7 +45,6 @@
                                 <option value="guru">guru</option>
                                 <option value="walas">walas</option>
                                 <option value="kesiswaan">kesiswaan</option>
-                                <option value="siswa">siswa</option>
                             </select>
                                  @error('role')
                                     <div class="alert alert-danger mt-2">

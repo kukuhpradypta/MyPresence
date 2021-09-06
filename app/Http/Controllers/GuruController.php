@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Guru;
+use App\Models\Kelas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Hash;
@@ -162,4 +163,11 @@ public function show(Guru $guru)
 {
     return view('guru.show',compact('guru'));
 }
+ public function search(Request $request)
+    {
+        $tambah = '';
+        $keyword = $request->search;
+        $gurus = Guru::where('role', 'like', "%" . $keyword . "%")->paginate(10);
+        return view('guru.index', compact('gurus','keyword','tambah'))->with('i', (request()->input('page', 1) - 1) * 5);
+    }
 }

@@ -20,6 +20,13 @@
     <!-- Custom styles for this template-->
     <link href="{{asset('template/css/sb-admin-2.min.css')}}" rel="stylesheet">
 
+
+
+    <link href="{{ asset('template/css/sb-admin-2.min.css')}}" rel="stylesheet">
+
+    <link href="{{ asset('template/vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
+
+
     <style>
         .oioi:hover{
             -ms-transform: scale(1.05); /* IE 9 */
@@ -81,7 +88,7 @@
                     <i class="fas fa-fw fa-user"></i>
                     <span>Data Master</span>
                 </a>
-                <div id="collapseTwo" class="collapse {{request()->is('siswa') || request()->is('guru') ? 'show':''}}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapseTwo" class="collapse {{request()->is('siswa') || request()->is('guru') || request()->is('kelas') ? 'show':''}}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         {{-- <h6 class="collapse-header">Custom Components:</h6> --}}
                         <a class="{{request()->is('siswa*') ? 'active':''}} collapse-item" href="/siswa">Data Siswa</a>
@@ -216,7 +223,7 @@
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
-                <div class="container-fluid">
+                <div class="container-fluid over">
 
                     <!-- Page Heading -->
                     <h1 class="h3 mb-4 text-gray-800">@yield('pagename')</h1>
@@ -286,6 +293,13 @@
 
     <!-- Custom scripts for all pages-->
     <script src="{{asset('template/js/sb-admin-2.min.js')}}"></script>
+
+    <!-- Page level plugins -->
+    <script src="{{ asset('template/vendor/datatables/jquery.dataTables.min.js')}}"></script>
+    <script src="{{ asset('template/vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="{{ asset('template/js/demo/datatables-demo.js')}}"></script>
 
 </body>
 
