@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -31,7 +32,11 @@ Route::middleware(['auth:guru','jabatanRole:kurikulum,guru'])->group(function ()
     
     Route::resource('siswa', SiswaController::class);
     Route::resource('guru', GuruController::class);
-    Route::resource('kelas', KelasController::class);
+    Route::resource('siswa', SiswaController::class);
 });
 use App\Http\Controllers\GuruController;
+use App\Http\Controllers\SiswaController;
+
+Route::get('edit', [SiswaController::class, 'editakun'])->name('akun.edit');
+Route::put('edit/{akun}', [SiswaController::class, 'updateakun'])->name('akun.update');
 Route::get('/search', [GuruController::class, 'search'])->name('search');

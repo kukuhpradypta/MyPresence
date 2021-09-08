@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBksTable extends Migration
+class CreateSeninsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateBksTable extends Migration
      */
     public function up()
     {
-        Schema::create('jabatans', function (Blueprint $table) {
-            $table->id('id');
-            $table->string('jabatan');
-            $table->rememberToken();
+        Schema::create('senins', function (Blueprint $table) {
+            $table->id();
+            $table->string('namamapel');
+            $table->string('namamapel');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateBksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bks');
+        Schema::dropIfExists('senins');
     }
 }
