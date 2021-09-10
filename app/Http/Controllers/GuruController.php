@@ -12,7 +12,7 @@ class GuruController extends Controller
 {
      public function index()
     {
-        $gurus = Guru::latest()->paginate(10);
+        $gurus = Guru::latest()->paginate(5);
         return view('guru.index', compact('gurus'));
     }
 

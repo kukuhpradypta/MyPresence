@@ -85,7 +85,7 @@
                                         @endforelse
                                     </tbody>
                                 </table>
-                                                          {{ $gurus->links() }}
+                                {{ $gurus->links() }}
                             </div>
                         </div>
                     </div>

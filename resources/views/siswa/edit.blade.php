@@ -42,8 +42,13 @@
                             <div class="form-group">
                             <label class="font-weight-bold">kelas</label>
                             <select name="kelas_id" class="custom-select form-control-border border-width-2" id="exampleSelectBorderWidth2">
-                                @foreach ($kelastb as $kelas) 
+                                @foreach ($kelastb as $kelas)
+                                    @if (old('kelas_id', $siswa->kelas_id == $kelas->id) )
+                                        <option value="{{$kelas->id }}" selected>{{ $kelas->name }}</option>  
+                                    @else
+                                        
                                     <option value="{{$kelas->id }}">{{ $kelas->name }}</option>
+                                    @endif
                                 @endforeach
                             </select>
                                  @error('kelas_id')

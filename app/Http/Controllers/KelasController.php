@@ -11,7 +11,7 @@ class KelasController extends Controller
 {
 public function index()
     {
-        $kelastbs = Kelas::latest()->paginate(10);
+        $kelastbs = Kelas::latest()->paginate(5);
         return view('kelas.index', compact('kelastbs'));
     }
     public function create()

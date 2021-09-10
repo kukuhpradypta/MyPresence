@@ -8,12 +8,15 @@ use App\Models\Guru;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
+
 
 class SiswaController extends Controller
 {
      public function index()
     {
-        $siswas = Siswa::latest()->paginate(10);
+        $siswas = Siswa::latest()->paginate(5);
         return view('siswa.index', compact('siswas'));
     }
 
@@ -26,7 +29,7 @@ class SiswaController extends Controller
 public function store(Request $request)
 {
     $this->validate($request, [
-        'nama'     => 'required',
+        'namasiswa'     => 'required',
         'nisn'     => 'required',
         'kelas_id'     => 'required',
         'email'     => 'required',
@@ -36,7 +39,7 @@ public function store(Request $request)
     //upload foto
 
     $siswa = Siswa::create([
-        'nama'     => $request->nama,
+        'namasiswa'     => $request->namasiswa,
         'nisn'     => $request->nisn,
         'kelas_id'     => $request->kelas_id,
         'foto'     => 'default.png',
@@ -59,7 +62,9 @@ public function edit(Siswa $siswa)
 public function update(Request $request, Siswa $siswa)
 {
     $this->validate($request, [
-        'nama'     => 'required',
+        'namasiswa'     => 'required',
+        'nisn'     => 'required',
+        'kelas_id'     => 'required',
         'email'     => 'required',
     ]);
 
@@ -69,14 +74,18 @@ public function update(Request $request, Siswa $siswa)
     if($request->file('foto') == "" && $request->password == $siswa->password) {
 
         $siswa->update([
-        'namasiswa'     => $request->nama,
+        'namasiswa'     => $request->namasiswa,
+        'nisn'     => $request->nisn,
+        'kelas_id'     => $request->kelas_id,
         'email'     => $request->email,
         ]);
 
     } else if($request->file('foto') == "" ) {
 
             $siswa->update([
-            'namasiswa'     => $request->nama,
+            'namasiswa'     => $request->namasiswa,
+            'nisn'     => $request->nisn,
+            'kelas_id'     => $request->kelas_id,
             'email'     => $request->email,
             'password' => Hash::make($request->password)
             ]);
@@ -90,7 +99,9 @@ public function update(Request $request, Siswa $siswa)
         $foto->storeAs('public/siswas', $foto->hashName());
 
             $siswa->update([
-            'namasiswa'     => $request->nama,
+            'namasiswa'     => $request->namasiswa,
+            'nisn'     => $request->nisn,
+            'kelas_id'     => $request->kelas_id,
             'foto'     => $foto->hashName(),
             'email'     => $request->email,
             ]);
@@ -105,7 +116,9 @@ public function update(Request $request, Siswa $siswa)
         $foto->storeAs('public/siswas', $foto->hashName());
 
         $siswa->update([
-            'namasiswa'     => $request->nama,
+            'namasiswa'     => $request->namasiswa,
+            'nisn'     => $request->nisn,
+            'kelas_id'     => $request->kelas_id,
             'foto'     => $foto->hashName(),
             'email'     => $request->email,
             'password'   => Hash::make($request->password)
@@ -139,75 +152,105 @@ public function show(Siswa $siswa)
     return view('siswa.show',compact('siswa'));
 }
 
-public function editakun()
-{   
+public function showakun()
+{
+    $siswa = Auth::guard('siswa')->user();
+
+    $guru = Auth::guard('guru')->user();
+
+     return view('showakun', ['guru' => $guru, 'siswa' => $siswa]);
+
+}
+
+public function editakun(Siswa $siswa)
+{
      return view('editakun');
 }
 
-public function updateakun(Siswa $siswa, Guru $guru)
+public function updateakun(Request $request, Siswa $siswa, Guru $guru)
 {   
+
     
-    if (Auth::guard('siswa')->check()) {
+    $siswaakun = Auth::guard('siswa')->user();
+
+    $guruakun = Auth::guard('guru')->user();
+
+    if (Str::length($siswaakun)>0) {
         $this->validate($request, [
             'nama'     => 'required',
             'email'     => 'required',
         ]);
+        $siswaakun1 = Auth::guard('siswa')->user();
 
-        if($request->file('foto') == "" && $request->password == $siswa->password) {
-
+    
+        //get data siswa by ID
+        $siswa = Siswa::where('id', $siswaakun->id);
+    
+        if($request->file('foto') == "" && $request->password == $siswaakun1->password) {
+    
             $siswa->update([
-            'nama'     => $request->nama,
+            'namasiswa'     => $request->nama,
             'email'     => $request->email,
             ]);
-
+    
         } else if($request->file('foto') == "" ) {
-
-            $siswa->update([
-            'nama'     => $request->nama,
-            'email'     => $request->email,
-            'password' => Hash::make($request->password)
-            ]);
-
-        } else if($request->password == $siswa->password) {
-
-            Storage::disk('local')->delete('public/siswas/'.$siswa->foto);
-
+    
+                $siswa->update([
+                'namasiswa'     => $request->nama,
+                'email'     => $request->email,
+                'password' => Hash::make($request->password)
+                ]);
+    
+        } else if($request->password == $siswaakun1->password) {
+    
+            Storage::disk('local')->delete('public/siswas/'.Auth::guard('siswa')->user()->foto);
+    
             //upload new image
             $foto = $request->file('foto');
             $foto->storeAs('public/siswas', $foto->hashName());
-
+    
                 $siswa->update([
-                'nama'     => $request->nama,
+                'namasiswa'     => $request->nama,
                 'foto'     => $foto->hashName(),
                 'email'     => $request->email,
                 ]);
-
-        } else {
-
+    
+    } else {
+    
             //hapus old image
-            Storage::disk('local')->delete('public/siswas/'.$siswa->foto);
-
+            Storage::disk('local')->delete('public/siswas/'.Auth::guard('siswa')->user()->foto);
+    
             //upload new image
             $foto = $request->file('foto');
             $foto->storeAs('public/siswas', $foto->hashName());
-
+    
             $siswa->update([
-                'nama'     => $request->nama,
+                'namasiswa'     => $request->nama,
                 'foto'     => $foto->hashName(),
                 'email'     => $request->email,
                 'password'   => Hash::make($request->password)
             ]);
-        } 
-    } else if(Auth::guard('guru')->check()){
+    
+        }
+        if($siswa){
+            //redirect dengan pesan sukses
+            return redirect()->route('dashboard')->with(['success' => 'Data Berhasil Diupdate!']);
+        }else{
+            //redirect dengan pesan error¿¿¿¿¿¿¿¿¿¿¿¿¿¿
+            return redirect()->route('dashboard')->with(['error' => 'Data Gagal Diupdate!']);
+        }
+    } else if(Str::length($guruakun)>0){
         $this->validate($request, [
         'nama'     => 'required',
         'email'     => 'required',
         ]);
+    $guruakun1 = Auth::guard('guru')->user();
+
 
         //get data guru by ID
-        $guru = Guru::findOrFail($guru->id);
+        $guru = Guru::where('id', $guruakun->id);
 
-        if($request->file('foto') == "" && $request->password == $guru->password) {
+        if($request->file('foto') == "" && $request->password == $guruakun1->password) {
 
             $guru->update([
             'namaguru'     => $request->nama,
@@ -222,24 +265,9 @@ public function updateakun(Siswa $siswa, Guru $guru)
                 'password' => Hash::make($request->password)
                 ]);
 
-            } else if($request->password == $guru->password) {
+            } else if($request->password == $guruakun1->password) {
         
-                Storage::disk('local')->delete('public/gurus/'.$guru->foto);
-        
-                //upload new image
-                $foto = $request->file('foto');
-                $foto->storeAs('public/gurus', $foto->hashName());
-        
-                    $guru->update([
-                    'namaguru'     => $request->nama,
-                    'foto'     => $foto->hashName(),
-                    'email'     => $request->email,
-                    ]);
-        
-        } 
-        else if($request->role == $guru->role) {
-        
-                Storage::disk('local')->delete('public/gurus/'.$guru->foto);
+                Storage::disk('local')->delete('public/gurus/'.Auth::guard('guru')->user()->foto);
         
                 //upload new image
                 $foto = $request->file('foto');
@@ -249,13 +277,12 @@ public function updateakun(Siswa $siswa, Guru $guru)
                     'namaguru'     => $request->nama,
                     'foto'     => $foto->hashName(),
                     'email'     => $request->email,
-                    'password'   => Hash::make($request->password)
                     ]);
         
         }else {
                 
             //hapus old image
-            Storage::disk('local')->delete('public/gurus/'.$guru->foto);
+            Storage::disk('local')->delete('public/gurus/'.Auth::guard('guru')->user()->foto);
 
             //upload new image
             $foto = $request->file('foto');
@@ -271,11 +298,13 @@ public function updateakun(Siswa $siswa, Guru $guru)
         }
         if($guru){
             //redirect dengan pesan sukses
-            return redirect()->route('guru.index')->with(['success' => 'Data Berhasil Diupdate!']);
+            return redirect()->route('dashboard')->with(['success' => 'Data Berhasil Diupdate!']);
         }else{
             //redirect dengan pesan error
-            return redirect()->route('guru.index')->with(['error' => 'Data Gagal Diupdate!']);
+            return redirect()->route('dashboard')->with(['error' => 'Data Gagal Diupdate!']);
         }
     }
+
 }
+
 }

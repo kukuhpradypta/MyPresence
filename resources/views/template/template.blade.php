@@ -185,7 +185,7 @@
                                 </span>
                                 <img class="img-profile rounded-circle"
                                     src="@if (Str::length(Auth::guard('siswa')->user())>0)
-                                    {{ Storage::url('public/gurus/').Auth::guard('siswa')->user()->foto}}
+                                    {{ Storage::url('public/siswas/').Auth::guard('siswa')->user()->foto}}
                                     @elseif (Str::length(Auth::guard('guru')->user())>0)
                                     {{ Storage::url('public/gurus/').Auth::guard('guru')->user()->Foto}}
                                     @endif">
@@ -193,7 +193,11 @@
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="{{ route('akun.edit') }}">
+                                <a class="dropdown-item" href="@if(Str::length(Auth::guard('siswa')->user())>0)
+                            {{ route('akun.show', Auth::guard('siswa')->user()->id) }}
+                            @elseif(Str::length(Auth::guard('guru')->user())>0)
+                            {{ route('akun.show', Auth::guard('guru')->user()->id) }}
+                            @endif">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
                                 </a>
