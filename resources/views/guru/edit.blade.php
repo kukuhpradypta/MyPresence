@@ -41,7 +41,7 @@
                             <div class="form-group">
                             <label class="font-weight-bold">role</label>
                             <select name="role" class="custom-select form-control-border border-width-2" id="exampleSelectBorderWidth2">                              
-                                <option value="{{ old('nign', $guru->role) }}"></option>
+                                <option value="{{ old('role', $guru->role) }}"></option>
                                 <option value="kurikulum">kurikulum</option>
                                 <option value="bk">bk</option>
                                 <option value="guru">guru</option>

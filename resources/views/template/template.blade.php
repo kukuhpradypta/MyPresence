@@ -88,12 +88,14 @@
                     <i class="fas fa-fw fa-user"></i>
                     <span>Data Master</span>
                 </a>
-                <div id="collapseTwo" class="collapse {{request()->is('siswa') || request()->is('guru') || request()->is('kelas') ? 'show':''}}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapseTwo" class="collapse {{request()->is('siswa') || request()->is('jadwalmapel') || request()->is('guru') || request()->is('kelas') ? 'show':''}}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         {{-- <h6 class="collapse-header">Custom Components:</h6> --}}
                         <a class="{{request()->is('siswa*') ? 'active':''}} collapse-item" href="/siswa">Data Siswa</a>
                         <a class="{{request()->is('guru*') ? 'active':''}} collapse-item" href="/guru">Data Guru</a>
                         <a class="{{request()->is('kelas*') ? 'active':''}} collapse-item" href="/kelas">Data Kelas</a>
+                        <a class="{{request()->is('jadwalmapel*') ? 'active':''}} collapse-item" 
+                        href="/jadwalmapel">Data Jadwal Pelajaran</a>
                     </div>
                 </div>
             </li>
@@ -110,7 +112,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#">
+                <a class="nav-link collapsed" href="/mapel">
                     <i class="fas fa-fw fa-bookmark"></i>
                     <span>Jadwal Pelajaran</span>
                 </a>

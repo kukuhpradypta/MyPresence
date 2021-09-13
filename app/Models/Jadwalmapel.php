@@ -8,12 +8,26 @@ use Illuminate\Database\Eloquent\Model;
 class Jadwalmapel extends Model
 {
     use HasFactory;
+    protected $table = 'jadwalmapels';
     protected $fillable = [
-        'nama_mapel',
-        'nama_guru',
-        'nama_kelas',
-        'tanggal_mapel',
-        'jam_pelajaran',
+        'namamapel',
+        'namaguru_id',
+        'kelas_id',
+        'hari',
+        'jammasuk',
+        'jamkeluar',
            
      ];
+       public function guru()
+    {
+        return $this->belongsTo(Guru::class);
+    }
+    public function kelas()
+    {
+        return $this->belongsTo(Kelas::class);
+    }
+    public function mapel()
+    {
+        return $this->belongsTo(Mapel::class);
+    }
 }

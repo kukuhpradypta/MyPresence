@@ -23,6 +23,14 @@ class Kelas extends Model
     {
         return $this->belongsTo(Guru::class);
     }
+    public function jadwalmapel()
+    {
+        return $this->hasMany(Kelas::class);
+    }
+    public function Mapel()
+    {
+        return $this->hasMany(Mapel::class);
+    }
 }
 
 

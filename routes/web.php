@@ -33,7 +33,9 @@ Route::middleware(['auth:guru','jabatanRole:kurikulum,guru'])->group(function ()
     Route::resource('siswa', SiswaController::class);
     Route::resource('guru', GuruController::class);
     Route::resource('kelas', KelasController::class);
+    Route::resource('jadwalmapel', JadwalController::class);
 });
+Route::resource('mapel', MapelController::class);
 use App\Http\Controllers\GuruController;
 use App\Http\Controllers\SiswaController;
 Route::get('edit/{akun}', [SiswaController::class, 'editakun'])->name('akun.edit');

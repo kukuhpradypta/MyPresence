@@ -79,7 +79,7 @@
                                 <label class="font-weight-bold">Password</label>
 
                                 <span><small><i style="color:red;">* kosongkan jika tidak ingin diubah</i></small></span>
-                                <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" value="{{ old('email', $siswa->password) }}" placeholder="Masukan Password baru">
+                                <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" value="{{ old('password', $siswa->password) }}" placeholder="Masukan Password baru">
                             
                                 <!-- error message untuk password -->
                                 @error('password')
