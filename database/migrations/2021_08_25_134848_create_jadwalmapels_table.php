@@ -15,12 +15,12 @@ class CreateJadwalmapelsTable extends Migration
     {
         Schema::create('jadwalmapels', function (Blueprint $table) {
             $table->id();
-            $table->string('namamapel');
-            $table->string('namaguru_id');
-            $table->string('kelas_id');
+            $table->string('waktu');
             $table->string('hari');
-            $table->time('jammasuk');
-            $table->time('jamkeluar');
+            $table->string('mapel');
+            $table->string('guru');
+            $table->string('kelas');
+            $table->string('ruangan');
             $table->timestamps();
         });
     }

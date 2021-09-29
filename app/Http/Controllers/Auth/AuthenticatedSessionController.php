@@ -28,11 +28,9 @@ class AuthenticatedSessionController extends Controller
      */
    public function store(Request $request)
     {
-        if (Auth::guard('siswa')->attempt(['email' => $request->email, 'password' => $request->password])) {
+        if (Auth::guard('siswa')->attempt(['nipd' => $request->username, 'password' => $request->password])) {
             return redirect('/');
-        } elseif (Auth::guard('user')->attempt(['email' => $request->email, 'password' => $request->password])) {
-            return redirect('/');
-        } elseif (Auth::guard('guru')->attempt(['email' => $request->email, 'password' => $request->password])) {
+        } elseif (Auth::guard('guru')->attempt(['username' => $request->username, 'password' => $request->password])) {
             return redirect('/');
         }
 

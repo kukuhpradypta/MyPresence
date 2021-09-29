@@ -17,11 +17,13 @@ class CreateSiswasTable extends Migration
             $table->id();
             $table->string('namasiswa');
             $table->string('nisn');
-            $table->foreignId('kelas_id');
+            $table->string('kelas');
             $table->string('foto');
+            $table->string('nipd')->unique();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('no_kartu');
             $table->rememberToken();
             $table->timestamps();
         });

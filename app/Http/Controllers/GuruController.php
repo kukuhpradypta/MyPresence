@@ -25,23 +25,24 @@ public function store(Request $request)
 {
     $this->validate($request, [
         'namaguru'     => 'required',
-        'nign'     => 'required',
         'role'     => 'required',
-        'email'     => 'required',
+        'username'     => 'required',
+        'email'     => 'required|email',
         'password'   => 'required'
     ]);
 
     //upload foto
 
     $guru = Guru::create([
-        'namaguru'     => $request->namaguru,
-        'nign'     => $request->nign,
+        'nign'     => '312341',
+        'namaguru'  => $request->namaguru,
         'role'     => $request->role,
-        'foto'     => 'default.png',
+        'Foto'     => 'default.png',
+        'username'     => $request->username,
         'email'     => $request->email,
         'password' => Hash::make($request->password)
     ]);
- if($guru){
+    if($guru){
         //redirect dengan pesan sukses
         return redirect()->route('guru.index')->with(['success' => 'Data Berhasil Disimpan!']);
     }else{
@@ -57,81 +58,32 @@ public function edit(Guru $guru)
 public function update(Request $request, Guru $guru)
 {
     $this->validate($request, [
+        'nuptk'     => 'required',
         'namaguru'     => 'required',
-        'nign'     => 'required',
         'role'     => 'required',
-        'email'     => 'required',
+        'email'     => 'required|email',
     ]);
 
     //get data guru by ID
     $guru = Guru::findOrFail($guru->id);
 
-    if($request->file('foto') == "" && $request->password == $guru->password) {
+    if($request->password == $guru->password) {
 
         $guru->update([
         'namaguru'     => $request->namaguru,
-        'nign'     => $request->nign,
+        'nuptk'     => $request->nuptk,
         'role'     => $request->role,
+        'mapel'     => $request->mapel,
         'email'     => $request->email,
         ]);
-
-    } else if($request->file('foto') == "" ) {
-
-            $guru->update([
-            'namaguru'     => $request->namaguru,
-            'nign'     => $request->nign,
-            'role'     => $request->role,
-            'email'     => $request->email,
-            'password' => Hash::make($request->password)
-            ]);
-
-        } else if($request->password == $guru->password) {
-    
-            Storage::disk('local')->delete('public/gurus/'.$guru->foto);
-    
-            //upload new image
-            $foto = $request->file('foto');
-            $foto->storeAs('public/gurus', $foto->hashName());
-    
-                $guru->update([
-                'namaguru'     => $request->namaguru,
-                'nign'     => $request->nign,
-                'role'     => $request->role,
-                'foto'     => $foto->hashName(),
-                'email'     => $request->email,
-                ]);
-    
-    } 
-    else if($request->role == $guru->role) {
-    
-            Storage::disk('local')->delete('public/gurus/'.$guru->foto);
-    
-            //upload new image
-            $foto = $request->file('foto');
-            $foto->storeAs('public/gurus', $foto->hashName());
-    
-                $guru->update([
-                'namaguru'     => $request->namaguru,
-                'nign'     => $request->nign,
-                'foto'     => $foto->hashName(),
-                'email'     => $request->email,
-                'password'   => Hash::make($request->password)
-                ]);
     
     }else {
-            
-        //hapus old image
-        Storage::disk('local')->delete('public/gurus/'.$guru->foto);
-
-        //upload new image
-        $foto = $request->file('foto');
-        $foto->storeAs('public/gurus', $foto->hashName());
 
         $guru->update([
             'namaguru'     => $request->namaguru,
-            'nign'     => $request->nign,
+            'nuptk'     => $request->nuptk,
             'role'     => $request->role,
-            'foto'     => $foto->hashName(),
+            'mapel'     => $request->mapel,
             'email'     => $request->email,
             'password'   => Hash::make($request->password)
         ]);
@@ -148,7 +100,6 @@ public function update(Request $request, Guru $guru)
 public function destroy($id)
 {
   $guru = Guru::findOrFail($id);
-  Storage::disk('local')->delete('public/gurus/'.$guru->image);
   $guru->delete();
 
   if($guru){

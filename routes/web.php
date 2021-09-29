@@ -42,3 +42,4 @@ Route::get('edit/{akun}', [SiswaController::class, 'editakun'])->name('akun.edit
 Route::put('update/{akun}', [SiswaController::class, 'updateakun'])->name('akun.update');
 Route::get('show/{akun}', [SiswaController::class, 'showakun'])->name('akun.show');
 Route::get('/search', [GuruController::class, 'search'])->name('search');
+Route::resource('absen', AbsenController::class);

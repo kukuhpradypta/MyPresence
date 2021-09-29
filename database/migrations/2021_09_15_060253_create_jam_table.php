@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateKelastbsTable extends Migration
+class CreateJamTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreateKelastbsTable extends Migration
      */
     public function up()
     {
-        Schema::create('kelastbs', function (Blueprint $table) {
+        Schema::create('jam', function (Blueprint $table) {
             $table->id();
-            $table->string('angkatan');
             $table->string('name');
-            $table->string('walas');
-            $table->string('bk');
-            $table->string('tahun');
+            $table->time('awal');
+            $table->time('akhir');
             $table->timestamps();
         });
     }
@@ -31,6 +29,6 @@ class CreateKelastbsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('kelastbs');
+        Schema::dropIfExists('jam');
     }
 }

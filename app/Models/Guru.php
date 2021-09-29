@@ -17,10 +17,10 @@ class Guru extends Authenticatable
 
     protected $fillable = [
         'namaguru',
-        'nign',
-        'foto',
+        'nuptk',
+        'Foto',
         'role',
-        'kelas',
+        'username',
         'email',
         'password',
     ];
@@ -35,16 +35,19 @@ class Guru extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-       public function kelas()
+    
+    public function kelas()
     {
         return $this->hasMany(Kelas::class);
     }
-       public function jabatan()
-    {
-        return $this->belongsTo(Jabatan::class);
-    }
+
     public function jadwalmapel()
     {
-        return $this->hasMany(Kelas::class);
+        return $this->hasMany(Jadwalmapel::class);
+    }
+
+    public function mapel()
+    {
+        return $this->belongsTo(Mapel::class);
     }
 }

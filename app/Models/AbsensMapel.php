@@ -5,24 +5,28 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Absensi extends Model
+class AbsensMapel extends Model
 {
     use HasFactory;
-    protected $table = "absensis";
+    protected $table = "absensis_mapels";
     protected $fillable = [
         'siswa',
         'kelas',
+        'mapel',
         'absen',
         'hari',
         'tanggal',
         'bulan',
         'tahun',
-        'jam_masuk',
-        'jam_pulang',
     ];
 
     public function siswa()
     {
         return $this->belongsTo(Siswa::class);
+    }
+
+    public function mapel()
+    {
+        return $this->belongsTo(Mapel::class);
     }
 }

@@ -20,9 +20,11 @@ class Siswa extends Authenticatable
         'namasiswa',
         'nisn',
         'foto',
-        'kelas_id',
+        'kelas',
+        'nipd',
         'email',
         'password',
+        'no_kartu',
     ];
 
 
@@ -39,5 +41,15 @@ class Siswa extends Authenticatable
     public function kelas()
     {
         return $this->belongsTo(Kelas::class);
+    }
+
+    public function absensi()
+    {
+        return $this->hasMany(Absensi::class);
+    }
+
+    public function absenmapel()
+    {
+        return $this->hasMany(AbsensiMapel::class);
     }
 }

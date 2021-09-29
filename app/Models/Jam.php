@@ -5,13 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Mapel extends Model
+class Jam extends Model
 {
     use HasFactory;
-    protected $table = 'mapels';
+    protected $table = 'jam';
     protected $fillable = [
         'name',
+        'awal',
+        'akhir'
     ];
+
     public function jadwal()
     {
         return $this->hasMany(Jadwalmapel::class);

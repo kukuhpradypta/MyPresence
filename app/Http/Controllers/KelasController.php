@@ -16,20 +16,30 @@ public function index()
     }
     public function create()
 {
-    $walas = Guru::where('role', 'walas')->get();
-    return view('kelas.create', compact('walas'));
+    $bk = Guru::all()->where('role', 'bk');
+    $walas = Guru::all();
+    return view('kelas.create', compact('bk', 'walas'));
 }
 
 public function store(Request $request)
 {
     $this->validate($request, [
+        'angkatan'     => 'required',
         'name'     => 'required',
         'walas_id'     => 'required',
+        'bk'     => 'required',
     ]);
 
+    date_default_timezone_set('Asia/Jakarta');
+    $tahun = date('Y');
+    $tahun1 = date('Y', strtotime('+1 year', strtotime($tahun)));
+
     $kelas = Kelas::create([
+        'angkatan'     => $request->angkatan,
         'name'     => $request->name,
-        'walas_id'     => $request->walas_id,
+        'walas'     => $request->walas_id,
+        'bk'     => $request->bk,
+        'tahun'     => $tahun.'/'.$tahun1,
     ]);
  if($kelas){
         //redirect dengan pesan sukses
@@ -50,26 +60,23 @@ public function edit(Kelas $kela)
 public function update(Request $request, Kelas $kela)
 {
     $this->validate($request, [
+        'angkatan'     => 'required',
         'name'     => 'required',
         'walas_id'     => 'required',
+        'bk'     => 'required',
     ]);
 
     //get data kelas by ID
     $kela = Kelas::findOrFail($kela->id);
-
-     if($request->name == $kela->name) { 
-                $kela->update([
-                'walas_id'     => $request->walas_id,
-                ]);
-    
-    }else {
             
         $kela->update([
+            'angkatan'     => $request->angkatan,
             'name'     => $request->name,
-            'walas_id'     => $request->walas_id,
+            'walas'     => $request->walas_id,
+            'bk'     => $request->bk,
         ]);
 
-    }
+
     if($kela){
         //redirect dengan pesan sukses
         return redirect()->route('kelas.index')->with(['success' => 'Data Berhasil Diupdate!']);

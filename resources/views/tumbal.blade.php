@@ -3,8 +3,8 @@
         <div style="background-color: #2E87E5">
             <div class="pt-60 px-24">
                 <h1 class="text-3xl text-white">Selamat Datang</h1>
-            <h1 class="text-5xl text-white font-extrabold">Aplikasi MyPersence</h1>
-        </div>
+                <h1 class="text-5xl text-white font-extrabold">Aplikasi MyPersence</h1>
+            </div>
         </div>
         <div class="bg-white" style="background-color: white">
             <x-auth-card>
@@ -51,10 +51,10 @@
 
                     <div class="flex items-center justify-end mt-4">
                         @if (Route::has('password.request'))
-                        <a class="underline text-sm text-gray-600 hover:text-gray-900"
-                            href="{{ route('password.request') }}">
-                            {{ __('Forgot your password?') }}
-                        </a>
+                            <a class="underline text-sm text-gray-600 hover:text-gray-900"
+                                href="{{ route('password.request') }}">
+                                {{ __('Forgot your password?') }}
+                            </a>
                         @endif
 
                         <x-button class="ml-3">

@@ -187,9 +187,9 @@
                                 </span>
                                 <img class="img-profile rounded-circle"
                                     src="@if (Str::length(Auth::guard('siswa')->user())>0)
-                                    {{ Storage::url('public/siswas/').Auth::guard('siswa')->user()->foto}}
+                                    {{ asset('foto/'. Auth::guard('siswa')->user()->foto) }}
                                     @elseif (Str::length(Auth::guard('guru')->user())>0)
-                                    {{ Storage::url('public/gurus/').Auth::guard('guru')->user()->Foto}}
+                                    {{ asset('foto/'. Auth::guard('guru')->user()->Foto)}}
                                     @endif">
                             </a>
                             <!-- Dropdown - User Information -->

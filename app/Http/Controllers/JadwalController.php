@@ -23,22 +23,22 @@ class JadwalController extends Controller
 public function store(Request $request)
 {
     $this->validate($request, [
-        'namamapel'     => 'required',
-        'namaguru_id'     => 'required',
-        'kelas_id'     => 'required',
+        'waktu'     => 'required',
         'hari'     => 'required',
-        'jammasuk'     => 'required',
-        'jamkeluar'     => 'required',
+        'mapel'     => 'required',
+        'guru'     => 'required',
+        'kelas'     => 'required',
+        'ruangan'     => 'required',
 
     ]);
 
     $jadwalmapel = Jadwalmapel::create([
-        'namamapel'     => $request->namamapel,
-        'namaguru_id'     => $request->namaguru_id,
-        'kelas_id'     => $request->kelas_id,
+        'waktu'     => $request->waktu,
         'hari'     => $request->hari,
-        'jammasuk'     => $request->jammasuk,
-        'jamkeluar'     => $request->jamkeluar,
+        'mapel'     => $request->mapel,
+        'guru'     => $request->guru,
+        'kelas'     => $request->kelas,
+        'ruangan'     => $request->ruangan,
     ]);
  if($jadwalmapel){
         //redirect dengan pesan sukses

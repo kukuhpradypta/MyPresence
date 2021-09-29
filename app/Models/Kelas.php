@@ -10,26 +10,24 @@ class Kelas extends Model
     use HasFactory;
     protected $table = 'kelastbs';
     protected $fillable = [
+        'angkatan',
         'name',
-        'walas_id',
-           
-     ];
+        'walas',
+        'bk',
+        'tahun',
+    ];
 
-     public function siswa()
+    public function siswa()
     {
         return $this->hasMany(Siswa::class);
     }
-         public function guru()
+    public function guru()
     {
-        return $this->belongsTo(Guru::class);
+        return $this->belongsToMany(Guru::class);
     }
-    public function jadwalmapel()
+    public function jadwal()
     {
-        return $this->hasMany(Kelas::class);
-    }
-    public function Mapel()
-    {
-        return $this->hasMany(Mapel::class);
+        return $this->hasMany(Jadwalmapel::class);
     }
 }
 
