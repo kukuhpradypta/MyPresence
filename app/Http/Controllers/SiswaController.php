@@ -29,7 +29,7 @@ class SiswaController extends Controller
 public function store(Request $request)
 {
     $this->validate($request, [
-        'namasiswa'     => 'required',
+        'nama'     => 'required',
         'nisn'     => 'required',
         'kelas_id'     => 'required',
         'email'     => 'required',
@@ -39,10 +39,10 @@ public function store(Request $request)
     //upload foto
 
     $siswa = Siswa::create([
-        'namasiswa'     => $request->namasiswa,
+        'nama'     => $request->nama,
         'nisn'     => $request->nisn,
         'kelas_id'     => $request->kelas_id,
-        'foto'     => 'default.png',
+        'foto'     => 'siswas/default.png',
         'email'     => $request->email,
         'password' => Hash::make($request->password)
     ]);
@@ -62,7 +62,7 @@ public function edit(Siswa $siswa)
 public function update(Request $request, Siswa $siswa)
 {
     $this->validate($request, [
-        'namasiswa'     => 'required',
+        'nama'     => 'required',
         'nisn'     => 'required',
         'kelas_id'     => 'required',
         'email'     => 'required',
@@ -74,7 +74,7 @@ public function update(Request $request, Siswa $siswa)
     if($request->file('foto') == "" && $request->password == $siswa->password) {
 
         $siswa->update([
-        'namasiswa'     => $request->namasiswa,
+        'nama'     => $request->nama,
         'nisn'     => $request->nisn,
         'kelas_id'     => $request->kelas_id,
         'email'     => $request->email,
@@ -83,7 +83,7 @@ public function update(Request $request, Siswa $siswa)
     } else if($request->file('foto') == "" ) {
 
             $siswa->update([
-            'namasiswa'     => $request->namasiswa,
+            'nama'     => $request->nama,
             'nisn'     => $request->nisn,
             'kelas_id'     => $request->kelas_id,
             'email'     => $request->email,
@@ -99,7 +99,7 @@ public function update(Request $request, Siswa $siswa)
         $foto->storeAs('public/siswas', $foto->hashName());
 
             $siswa->update([
-            'namasiswa'     => $request->namasiswa,
+            'nama'     => $request->nama,
             'nisn'     => $request->nisn,
             'kelas_id'     => $request->kelas_id,
             'foto'     => $foto->hashName(),
@@ -116,7 +116,7 @@ public function update(Request $request, Siswa $siswa)
         $foto->storeAs('public/siswas', $foto->hashName());
 
         $siswa->update([
-            'namasiswa'     => $request->namasiswa,
+            'nama'     => $request->nama,
             'nisn'     => $request->nisn,
             'kelas_id'     => $request->kelas_id,
             'foto'     => $foto->hashName(),
@@ -189,14 +189,14 @@ public function updateakun(Request $request, Siswa $siswa, Guru $guru)
         if($request->file('foto') == "" && $request->password == $siswaakun1->password) {
     
             $siswa->update([
-            'namasiswa'     => $request->nama,
+            'nama'     => $request->nama,
             'email'     => $request->email,
             ]);
     
         } else if($request->file('foto') == "" ) {
     
                 $siswa->update([
-                'namasiswa'     => $request->nama,
+                'nama'     => $request->nama,
                 'email'     => $request->email,
                 'password' => Hash::make($request->password)
                 ]);
@@ -210,7 +210,7 @@ public function updateakun(Request $request, Siswa $siswa, Guru $guru)
             $foto->storeAs('public/siswas', $foto->hashName());
     
                 $siswa->update([
-                'namasiswa'     => $request->nama,
+                'nama'     => $request->nama,
                 'foto'     => $foto->hashName(),
                 'email'     => $request->email,
                 ]);
@@ -225,7 +225,7 @@ public function updateakun(Request $request, Siswa $siswa, Guru $guru)
             $foto->storeAs('public/siswas', $foto->hashName());
     
             $siswa->update([
-                'namasiswa'     => $request->nama,
+                'nama'     => $request->nama,
                 'foto'     => $foto->hashName(),
                 'email'     => $request->email,
                 'password'   => Hash::make($request->password)

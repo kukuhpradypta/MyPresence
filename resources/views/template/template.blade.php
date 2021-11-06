@@ -12,27 +12,30 @@
     <title>MyPresence</title>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <!-- Custom fonts for this template-->
-    <link href="{{asset('template/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('template/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="{{asset('template/css/sb-admin-2.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('template/css/sb-admin-2.min.css') }}" rel="stylesheet">
 
 
 
-    <link href="{{ asset('template/css/sb-admin-2.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('template/css/sb-admin-2.min.css') }}" rel="stylesheet">
 
-    <link href="{{ asset('template/vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('template/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
 
 
     <style>
-        .oioi:hover{
-            -ms-transform: scale(1.05); /* IE 9 */
-            -webkit-transform: scale(1.05); /* Safari 3-8 */
+        .oioi:hover {
+            -ms-transform: scale(1.05);
+            /* IE 9 */
+            -webkit-transform: scale(1.05);
+            /* Safari 3-8 */
             transform: scale(1.05);
         }
+
     </style>
 
 </head>
@@ -48,12 +51,12 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
                 <div class="sidebar-brand-icon">
-                {{-- <div class="sidebar-brand-icon rotate-n-15"> --}}
+                    {{-- <div class="sidebar-brand-icon rotate-n-15"> --}}
                     <i class="fas fa-user-graduate"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3"> 
+                <div class="sidebar-brand-text mx-3">
                     MyPresence
-                                    {{-- @if (Str::length(Auth::guard('siswa')->user())>0)
+                    {{-- @if (Str::length(Auth::guard('siswa')->user()) > 0)
                                     <div>{{Auth::guard('siswa')->user()->namasiswa}}</div>
                                     @elseif (Str::length(Auth::guard('user')->user())>0)
                                     <div>{{Auth::guard('user')->user()->name}}</div>
@@ -65,7 +68,7 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item {{request()->is('/')? 'active':''}}">
+            <li class="nav-item {{ request()->is('/') ? 'active' : '' }}">
                 <a class="nav-link" href="/">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
@@ -79,26 +82,32 @@
                 Interface
             </div>
 
-            @if (Str::length(Auth::guard('siswa')->user())>0)
-            
-            @elseif (Str::length(Auth::guard('guru')->user()->role == 'kurikulum' or Auth::guard('guru')->user()->role == 'guru')>0)
-            <li class="nav-item {{request()->is('siswa') || request()->is('guru') ? 'active':''}}">
-                <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-user"></i>
-                    <span>Data Master</span>
-                </a>
-                <div id="collapseTwo" class="collapse {{request()->is('siswa') || request()->is('jadwalmapel') || request()->is('guru') || request()->is('kelas') ? 'show':''}}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        {{-- <h6 class="collapse-header">Custom Components:</h6> --}}
-                        <a class="{{request()->is('siswa*') ? 'active':''}} collapse-item" href="/siswa">Data Siswa</a>
-                        <a class="{{request()->is('guru*') ? 'active':''}} collapse-item" href="/guru">Data Guru</a>
-                        <a class="{{request()->is('kelas*') ? 'active':''}} collapse-item" href="/kelas">Data Kelas</a>
-                        <a class="{{request()->is('jadwalmapel*') ? 'active':''}} collapse-item" 
-                        href="/jadwalmapel">Data Jadwal Pelajaran</a>
+            @if (Str::length(Auth::guard('siswa')->user()) > 0)
+
+            @elseif (Str::length(Auth::guard('guru')->user()->role == 'kurikulum' or
+                Auth::guard('guru')->user()->role == 'guru')>0)
+                <li class="nav-item {{ request()->is('siswa') || request()->is('guru') ? 'active' : '' }}">
+                    <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                        aria-expanded="true" aria-controls="collapseTwo">
+                        <i class="fas fa-fw fa-user"></i>
+                        <span>Data Master</span>
+                    </a>
+                    <div id="collapseTwo"
+                        class="collapse {{ request()->is('siswa') || request()->is('jadwalmapel') || request()->is('guru') || request()->is('kelas') ? 'show' : '' }}"
+                        aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            {{-- <h6 class="collapse-header">Custom Components:</h6> --}}
+                            <a class="{{ request()->is('siswa*') ? 'active' : '' }} collapse-item" href="/siswa">Data
+                                Siswa</a>
+                            <a class="{{ request()->is('guru*') ? 'active' : '' }} collapse-item" href="/guru">Data
+                                Guru</a>
+                            <a class="{{ request()->is('kelas*') ? 'active' : '' }} collapse-item" href="/kelas">Data
+                                Kelas</a>
+                            <a class="{{ request()->is('jadwalmapel*') ? 'active' : '' }} collapse-item"
+                                href="/jadwalmapel">Data Jadwal Pelajaran</a>
+                        </div>
                     </div>
-                </div>
-            </li>
+                </li>
             @endif
 
             <!-- Nav Item - Pages Collapse Menu -->
@@ -143,7 +152,7 @@
                     </button>
 
                     <!-- Topbar Search -->
-                   @yield('search')
+                    @yield('search')
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -170,7 +179,7 @@
                                     </div>
                                 </form>
                             </div>
-                        </li>                   
+                        </li>
 
                         <div class="topbar-divider d-none d-sm-block"></div>
 
@@ -179,46 +188,43 @@
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">
-                                    @if (Str::length(Auth::guard('siswa')->user())>0)
-                                    <div>{{Auth::guard('siswa')->user()->namasiswa}}</div>
+                                    @if (Str::length(Auth::guard('siswa')->user()) > 0)
+                                        <div>{{ Auth::guard('siswa')->user()->nama }}</div>
                                     @elseif (Str::length(Auth::guard('guru')->user())>0)
-                                    <div>{{Auth::guard('guru')->user()->namaguru}}</div>
+                                        <div>{{ Auth::guard('guru')->user()->nama }}</div>
                                     @endif
                                 </span>
-                                <img class="img-profile rounded-circle"
-                                    src="@if (Str::length(Auth::guard('siswa')->user())>0)
-                                    {{ Storage::url('public/siswas/').Auth::guard('siswa')->user()->foto}}
-                                    @elseif (Str::length(Auth::guard('guru')->user())>0)
-                                    {{ Storage::url('public/gurus/').Auth::guard('guru')->user()->Foto}}
-                                    @endif">
+                                <img class="img-profile rounded-circle" src="            
+                                      @if (Str::length(Auth::guard('siswa')->user()) >
+                                0)
+                                {{ asset('storage/' . Auth::guard('siswa')->user()->foto) }}
+                            @elseif (Str::length(Auth::guard('guru')->user())>0)
+                                {{ asset('storage/' . Auth::guard('guru')->user()->foto) }}
+                                @endif">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="@if(Str::length(Auth::guard('siswa')->user())>0)
-                            {{ route('akun.show', Auth::guard('siswa')->user()->id) }}
-                            @elseif(Str::length(Auth::guard('guru')->user())>0)
-                            {{ route('akun.show', Auth::guard('guru')->user()->id) }}
-                            @endif">
+                                <a class="dropdown-item" href="/profile">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
                                 </a>
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="   @if (Str::length(Auth::guard('siswa')->user()) > 0)
+                                    {{ route('profile.edit', Auth::guard('siswa')->user()->id) }}
+                                @elseif (Str::length(Auth::guard('guru')->user())>0)
+                                    {{ route('profile.edit', Auth::guard('guru')->user()->id) }}
+                                    @endif">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Settings
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Activity Log
+                                    Edit Profile
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                    {{-- <div style="margin-left:17%; margin-top:-12.5%;">  --}}
+                                {{-- <div style="margin-left:17%; margin-top:-12.5%;"> --}}
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
                                 </a>
 
-                            {{-- </div> --}}
+                                {{-- </div> --}}
                                 </a>
                             </div>
                         </li>
@@ -275,14 +281,13 @@
                 <div class="modal-body">Pilih "Logout" jika kamu ingin mengakhiri sesi ini.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                                    <form  method="POST" action="{{ route('logout') }}">
-                            @csrf
-                            <x-dropdown-link :href="route('logout')"
-                                    onclick="event.preventDefault();
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <x-dropdown-link :href="route('logout')" onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                <div class="btn btn-primary text-white">Logout</div>
-                            </x-dropdown-link>
-                                </form>
+                            <div class="btn btn-primary text-white">Logout</div>
+                        </x-dropdown-link>
+                    </form>
                 </div>
             </div>
         </div>
@@ -291,21 +296,21 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <!-- Bootstrap core JavaScript-->
-    <script src="{{asset('template/vendor/jquery/jquery.min.js')}}"></script>
-    <script src="{{asset('template/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{ asset('template/vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('template/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="{{asset('template/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
+    <script src="{{ asset('template/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="{{asset('template/js/sb-admin-2.min.js')}}"></script>
+    <script src="{{ asset('template/js/sb-admin-2.min.js') }}"></script>
 
     <!-- Page level plugins -->
-    <script src="{{ asset('template/vendor/datatables/jquery.dataTables.min.js')}}"></script>
-    <script src="{{ asset('template/vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
+    <script src="{{ asset('template/vendor/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('template/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
 
     <!-- Page level custom scripts -->
-    <script src="{{ asset('template/js/demo/datatables-demo.js')}}"></script>
+    <script src="{{ asset('template/js/demo/datatables-demo.js') }}"></script>
 
 </body>
 

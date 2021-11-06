@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Hash;
 
 class GuruController extends Controller
 {
-     public function index()
+    public function index()
     {
         $gurus = Guru::latest()->paginate(5);
         return view('guru.index', compact('gurus'));
@@ -24,8 +24,8 @@ class GuruController extends Controller
 public function store(Request $request)
 {
     $this->validate($request, [
-        'namaguru'     => 'required',
-        'nign'     => 'required',
+        'nama'     => 'required',
+        'nomor_induk'     => 'required',
         'role'     => 'required',
         'email'     => 'required',
         'password'   => 'required'
@@ -34,10 +34,10 @@ public function store(Request $request)
     //upload foto
 
     $guru = Guru::create([
-        'namaguru'     => $request->namaguru,
-        'nign'     => $request->nign,
+        'nama'     => $request->nama,
+        'nomor_induk'     => $request->nomor_induk,
         'role'     => $request->role,
-        'foto'     => 'default.png',
+        'foto'     => 'gurus/default.png',
         'email'     => $request->email,
         'password' => Hash::make($request->password)
     ]);
@@ -57,8 +57,8 @@ public function edit(Guru $guru)
 public function update(Request $request, Guru $guru)
 {
     $this->validate($request, [
-        'namaguru'     => 'required',
-        'nign'     => 'required',
+        'nama'     => 'required',
+        'nomor_induk'     => 'required',
         'role'     => 'required',
         'email'     => 'required',
     ]);
@@ -69,8 +69,8 @@ public function update(Request $request, Guru $guru)
     if($request->file('foto') == "" && $request->password == $guru->password) {
 
         $guru->update([
-        'namaguru'     => $request->namaguru,
-        'nign'     => $request->nign,
+        'nama'     => $request->nama,
+        'nomor_induk'     => $request->nomor_induk,
         'role'     => $request->role,
         'email'     => $request->email,
         ]);
@@ -79,7 +79,7 @@ public function update(Request $request, Guru $guru)
 
             $guru->update([
             'namaguru'     => $request->namaguru,
-            'nign'     => $request->nign,
+            'nomor_induk'     => $request->nomor_induk,
             'role'     => $request->role,
             'email'     => $request->email,
             'password' => Hash::make($request->password)
@@ -95,7 +95,7 @@ public function update(Request $request, Guru $guru)
     
                 $guru->update([
                 'namaguru'     => $request->namaguru,
-                'nign'     => $request->nign,
+                'nomor_induk'     => $request->nomor_induk,
                 'role'     => $request->role,
                 'foto'     => $foto->hashName(),
                 'email'     => $request->email,
@@ -112,7 +112,7 @@ public function update(Request $request, Guru $guru)
     
                 $guru->update([
                 'namaguru'     => $request->namaguru,
-                'nign'     => $request->nign,
+                'nomor_induk'     => $request->nomor_induk,
                 'foto'     => $foto->hashName(),
                 'email'     => $request->email,
                 'password'   => Hash::make($request->password)
@@ -129,7 +129,7 @@ public function update(Request $request, Guru $guru)
 
         $guru->update([
             'namaguru'     => $request->namaguru,
-            'nign'     => $request->nign,
+            'nomor_induk'     => $request->nomor_induk,
             'role'     => $request->role,
             'foto'     => $foto->hashName(),
             'email'     => $request->email,
