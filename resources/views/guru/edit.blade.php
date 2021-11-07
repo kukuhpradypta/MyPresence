@@ -29,12 +29,12 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="font-weight-bold">NUPTK</label>
-                                    <input type="text" class="form-control @error('nign') is-invalid @enderror" name="nuptk"
-                                        value="{{ old('nign', $guru->nign) }}">
+                                    <label class="font-weight-bold">Nomor Induk</label>
+                                    <input type="text" class="form-control @error('nomor_induk') is-invalid @enderror"
+                                        name="nomor_induk" value="{{ old('nomor_induk', $guru->nomor_induk) }}">
 
                                     <!-- error message untuk nign -->
-                                    @error('nuptk')
+                                    @error('nomor_induk')
                                         <div class="alert alert-danger mt-2">
                                             {{ $message }}
                                         </div>
@@ -42,7 +42,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="font-weight-bold">role</label>
+                                    <label class="font-weight-bold">Jabatan</label>
                                     <select name="role" class="custom-select form-control-border border-width-2"
                                         id="exampleSelectBorderWidth2">
                                         @if (old('role', $guru->role) == $guru->role)
@@ -56,19 +56,6 @@
                                         @endif
                                     </select>
                                     @error('role')
-                                        <div class="alert alert-danger mt-2">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="font-weight-bold">Email</label>
-                                    <input type="text" class="form-control @error('email') is-invalid @enderror"
-                                        name="email" value="{{ old('email', $guru->email) }}">
-
-                                    <!-- error message untuk email -->
-                                    @error('email')
                                         <div class="alert alert-danger mt-2">
                                             {{ $message }}
                                         </div>

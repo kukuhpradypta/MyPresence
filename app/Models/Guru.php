@@ -16,11 +16,11 @@ class Guru extends Authenticatable
     // protected $primarykey = "id_siswa";
 
     protected $fillable = [
-        'namaguru',
-        'nuptk',
-        'Foto',
+        'nama',
+        'nomor_induk',
+        'foto',
         'role',
-        'username',
+        'mapel',
         'email',
         'password',
     ];

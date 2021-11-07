@@ -17,11 +17,11 @@
 
                                 <div class="form-group">
                                     <label class="font-weight-bold">Nama Siswa</label>
-                                    <input type="text" class="form-control @error('namasiswa') is-invalid @enderror"
-                                        name="namasiswa" value="{{ old('namasiswa', $siswa->namasiswa) }}">
+                                    <input type="text" class="form-control @error('nama') is-invalid @enderror"
+                                        name="nama" value="{{ old('nama', $siswa->nama) }}">
 
-                                    <!-- error message untuk namasiswa -->
-                                    @error('namasiswa')
+                                    <!-- error message untuk nama -->
+                                    @error('nama')
                                         <div class="alert alert-danger mt-2">
                                             {{ $message }}
                                         </div>
@@ -43,7 +43,7 @@
 
 
                                 <div class="form-group">
-                                    <label class="font-weight-bold">kelas</label>
+                                    <label class="font-weight-bold">Kelas</label>
                                     <select name="kelas_id" class="custom-select form-control-border border-width-2"
                                         id="exampleSelectBorderWidth2">
                                         @foreach ($kelastb as $kelas)

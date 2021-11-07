@@ -17,10 +17,10 @@ class Siswa extends Authenticatable
     // protected $primarykey = "id_siswa";
 
     protected $fillable = [
-        'namasiswa',
+        'nama',
         'nisn',
         'foto',
-        'kelas',
+        'kelas_id',
         'nipd',
         'email',
         'password',

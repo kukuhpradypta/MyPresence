@@ -14,10 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('template.template');
-// });
-
+Route::get('/rfid', function () {
+    return view('rfid');
+});
+Route::resource('profile', ProfileController::class);
 
 Route::middleware(['auth:user,siswa,guru'])->group(function () {
     Route::get('/', function () {

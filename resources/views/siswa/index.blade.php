@@ -44,8 +44,9 @@
                         @forelse ($siswas as $siswa)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $siswa->namasiswa }}</td>
+                                <td>{{ $siswa->nama }}</td>
                                 <td>{{ $siswa->nisn }}</td>
+                                <td>{{ $siswa->kelas->name }}</td>
                                 <td class="text-center">
                                     <img src="{{ asset('foto/' . $siswa->foto) }}" class="rounded"
                                         style="max-width: 150px;height:100px;">

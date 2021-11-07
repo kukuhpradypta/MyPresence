@@ -16,39 +16,38 @@
 
                                 @csrf
                                 <div class="form-group">
-                                    <label class="font-weight-bold">NUPTK</label>
-                                    <input type="text" class="form-control @error('nuptk') is-invalid @enderror"
-                                        name="nuptk" placeholder="Masukan NUPTK">
+                                    <label class="font-weight-bold">Nama</label>
+                                    <input type="text" class="form-control @error('nama') is-invalid @enderror" name="nama"
+                                        placeholder="Masukan Nama Guru">
 
-                                    @error('nuptk')
+                                    @error('nama')
                                         <div class="alert alert-danger mt-2">
                                             {{ $message }}
                                         </div>
                                     @enderror
+
                                 </div>
                                 <div class="form-group">
-                                    <label class="font-weight-bold">Nama</label>
-                                    <input type="text" class="form-control @error('namaguru') is-invalid @enderror"
-                                        name="namaguru" placeholder="Masukan nama guru">
+                                    <label class="font-weight-bold">Nomor Induk</label>
+                                    <input type="text" class="form-control @error('nomor_induk') is-invalid @enderror"
+                                        name="nomor_induk" placeholder="Masukan Nomor Induk Guru">
 
-                                    @error('namaguru')
+                                    @error('nomor_induk')
                                         <div class="alert alert-danger mt-2">
                                             {{ $message }}
                                         </div>
                                     @enderror
-
                                 </div>
 
                                 <div class="form-group">
                                     <label class="font-weight-bold">Jabatan</label>
                                     <select name="role" class="custom-select form-control-border border-width-2"
                                         id="exampleSelectBorderWidth2">
-                                        <option value="">~ ~ Pilih Jabatan ~ ~</option>
-                                        <option value="kurikulum">kurikulum</option>
-                                        <option value="bk">bk</option>
-                                        <option value="guru">guru</option>
-                                        <option value="walas">walas</option>
-                                        <option value="kesiswaan">kesiswaan</option>
+                                        <option value="kurikulum">Kurikulum</option>
+                                        <option value="bk">BK</option>
+                                        <option value="guru">Guru</option>
+                                        <option value="walas">Walas</option>
+                                        <option value="kesiswaan">Kesiswaan</option>
                                     </select>
                                     @error('role')
                                         <div class="alert alert-danger mt-2">
@@ -70,21 +69,9 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="font-weight-bold">Username</label>
-                                    <input type="text" class="form-control @error('username') is-invalid @enderror"" name="
-                                        username" placeholder="Masukan Username">
-
-                                    @error('username')
-                                        <div class="alert alert-danger mt-2">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
-                                </div>
-
-                                <div class="form-group">
                                     <label class="font-weight-bold">Email</label>
                                     <input type="text" class="form-control @error('email') is-invalid @enderror"" name="
-                                        email" placeholder="Masukan Email">
+                                        email" placeholder="Masukan Email Address">
 
                                     @error('email')
                                         <div class="alert alert-danger mt-2">

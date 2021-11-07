@@ -30,7 +30,7 @@ class SiswaController extends Controller
     {
         $this->validate($request, [
             'nisn'      => 'required',
-            'namasiswa'      => 'required',
+            'nama'      => 'required',
             'kelas'  => 'required',
             'nipd'      => 'required',
             'email'     => 'required',
@@ -41,7 +41,7 @@ class SiswaController extends Controller
         //upload foto
 
         $siswa = Siswa::create([
-            'namasiswa'     => $request->namasiswa,
+            'nama'     => $request->nama,
             'nisn'     => $request->nisn,
             'kelas'     => $request->kelas,
             'foto'     => 'default.png',
@@ -66,7 +66,7 @@ class SiswaController extends Controller
     public function update(Request $request, Siswa $siswa)
     {
         $this->validate($request, [
-            'namasiswa'     => 'required',
+            'nama'     => 'required',
             'nisn'     => 'required|unique',
             'kelas_id'     => 'required',
             'email'     => 'required|email',
@@ -79,7 +79,7 @@ class SiswaController extends Controller
         if($request->password == $siswa->password) {
 
             $siswa->update([
-            'namasiswa'     => $request->namasiswa,
+            'nama'     => $request->nama,
             'nisn'     => $request->nisn,
             'kelas_id'     => $request->kelas_id,
             'email'     => $request->email,
@@ -89,7 +89,7 @@ class SiswaController extends Controller
         } else {
 
             $siswa->update([
-                'namasiswa'     => $request->namasiswa,
+                'nama'     => $request->nama,
                 'nisn'     => $request->nisn,
                 'kelas_id'     => $request->kelas_id,
                 'email'     => $request->email,
@@ -161,14 +161,14 @@ class SiswaController extends Controller
             if($request->file('foto') == "" && $request->password == $siswaakun1->password) {
         
                 $siswa->update([
-                'namasiswa'     => $request->nama,
+                'nama'     => $request->nama,
                 'email'     => $request->email,
                 ]);
         
             } else if($request->file('foto') == "" ) {
         
                     $siswa->update([
-                    'namasiswa'     => $request->nama,
+                    'nama'     => $request->nama,
                     'email'     => $request->email,
                     'password' => Hash::make($request->password)
                     ]);
@@ -182,7 +182,7 @@ class SiswaController extends Controller
                 $foto->storeAs('public/siswas', $foto->hashName());
         
                     $siswa->update([
-                    'namasiswa'     => $request->nama,
+                    'nama'     => $request->nama,
                     'foto'     => $foto->hashName(),
                     'email'     => $request->email,
                     ]);
@@ -197,7 +197,7 @@ class SiswaController extends Controller
                 $foto->storeAs('public/siswas', $foto->hashName());
         
                 $siswa->update([
-                    'namasiswa'     => $request->nama,
+                    'nama'     => $request->nama,
                     'foto'     => $foto->hashName(),
                     'email'     => $request->email,
                     'password'   => Hash::make($request->password)
@@ -225,14 +225,14 @@ class SiswaController extends Controller
             if($request->file('foto') == "" && $request->password == $guruakun1->password) {
 
                 $guru->update([
-                'namaguru'     => $request->nama,
+                'nama'     => $request->nama,
                 'email'     => $request->email,
                 ]);
 
             } else if($request->file('foto') == "" ) {
 
                     $guru->update([
-                    'namaguru'     => $request->nama,
+                    'nama'     => $request->nama,
                     'email'     => $request->email,
                     'password' => Hash::make($request->password)
                     ]);
@@ -246,7 +246,7 @@ class SiswaController extends Controller
                     $foto->storeAs('public/gurus', $foto->hashName());
             
                         $guru->update([
-                        'namaguru'     => $request->nama,
+                        'nama'     => $request->nama,
                         'foto'     => $foto->hashName(),
                         'email'     => $request->email,
                         ]);
@@ -261,7 +261,7 @@ class SiswaController extends Controller
                 $foto->storeAs('public/gurus', $foto->hashName());
 
                 $guru->update([
-                    'namaguru'     => $request->nama,
+                    'nama'     => $request->nama,
                     'foto'     => $foto->hashName(),
                     'email'     => $request->email,
                     'password'   => Hash::make($request->password)

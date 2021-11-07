@@ -1,5 +1,20 @@
-    @extends('template.template')
-@section('content')
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <title>Dashboard RFID</title>
+
+    {{-- Fonts Poppins --}}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link  href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
     <style>
         body {
                 overflow-x: hidden;
@@ -79,6 +94,8 @@
             padding-bottom: 10px;
         }
     </style>
+  </head>
+  <body>
     <div class="row">
 
         <div class="col-lg-6">
@@ -108,60 +125,8 @@
             </div>
         </div>
     </div>
+
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-
-
-    <div class="container mt-5">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card border-0 shadow rounded">
-                    <div class="card-body">
-                        <!-- <a href="" class="btn btn-md btn-success mb-3">TAMBAH BLOG</a> -->
-                        <form action="{{ route('absen.store') }}" method="POST" enctype="multipart/form-data">
-
-                            @csrf
-                            @method('put')
-
-                            @if (session()->has('absen'))
-                                <div class="alert alert-danger mt-2">
-                                    {{ session('absen') }}
-                                </div>
-                            @endif
-                            @if (session()->has('gagal'))
-                                <div class="alert alert-danger mt-2">
-                                    {{ session('gagal') }}
-                                </div>
-                            @endif
-
-                            <div class="form-group">
-                                <label class="font-weight-bold">JUDUL</label>
-                                <input type="text"
-                                    class="form-control border-transparent @error('title') is-invalid @enderror"
-                                    style="border: none; opacity: 0;" name="title" value="{{ old('title') }}"
-                                    placeholder="" autocomplete="off" autofocus>
-                                <button type="submit" id="myBtn" class="btn btn-md btn-primary"
-                                    style="opacity: 0;">SIMPAN</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-
-    <script>
-        //message with toastr
-        @if (session()->has('success'))
-        
-            toastr.success('{{ session('success') }}', 'BERHASIL!');
-        
-        @elseif(session()->has('error'))
-        
-            toastr.error('{{ session('error') }}', 'GAGAL!');
-        
-        @endif
-    </script>
-@endsection
+  </body>
+</html>

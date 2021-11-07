@@ -31,45 +31,41 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th scope="col">No</th>
-                            <th scope="col">NUPTK</th>
+                            <th scope="col">NO</th>
                             <th scope="col">Nama</th>
+                            <th scope="col">Nomor Induk</th>
                             <th scope="col">Jabatan</th>
-                            <th scope="col">Mata Pelajaran</th>
-                            <th scope="col">Username</th>
                             <th scope="col">Foto</th>
                             <th scope="col">Email</th>
-                            <th scope="col">Aksi</th>
+                            <th scope="col">AKSI</th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
-                            <th scope="col">No</th>
-                            <th scope="col">NUPTK</th>
+                            <th scope="col">NO</th>
                             <th scope="col">Nama</th>
+                            <th scope="col">Nomor Induk</th>
                             <th scope="col">Jabatan</th>
                             <th scope="col">Mata Pelajaran</th>
-                            <th scope="col">Username</th>
                             <th scope="col">Foto</th>
                             <th scope="col">Email</th>
-                            <th scope="col">Aksi</th>
+                            <th scope="col">AKSI</th>
                         </tr>
                     </tfoot>
                     <tbody>
                         @forelse ($gurus as $guru)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $guru->nign }}</td>
-                                <td>{{ $guru->namaguru }}</td>
+                                <td>{{ $guru->nama }}</td>
+                                <td>{{ $guru->nomor_induk }}</td>
                                 <td>{{ $guru->role }}</td>
                                 @if ($guru->mapel)
                                     <td>{{ $guru->mapel }}</td>
                                 @else
                                     <td> - </td>
                                 @endif
-                                <td>{{ $guru->username }}</td>
                                 <td class="text-center">
-                                    <img src="{{ asset('foto/' . $guru->Foto) }}" class="rounded"
+                                    <img src="{{ asset('storage/' . $guru->Foto) }}" class="rounded"
                                         style="max-width: 150px;height:100px;">
                                 </td>
                                 <td>{{ $guru->email }}</td>

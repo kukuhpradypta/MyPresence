@@ -14,7 +14,7 @@
                             <tbody>
                                 <tr>
                                     <td>Nama Siswa</td>
-                                    <td>{{ old('namasiswa', $siswa->namasiswa) }}</td>
+                                    <td>{{ old('namasiswa', $siswa->nama) }}</td>
                                 </tr>
                                 <tr>
                                     <td>NISN</td>

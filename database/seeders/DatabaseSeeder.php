@@ -17,11 +17,10 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         Guru::create([
-            'nuptk' => '414234',
-            'namaguru' => 'Kurikulum',
-            'Foto' => 'default.png',
+            'nomor_induk' => '414234',
+            'nama' => 'Kurikulum',
+            'foto' => 'default.png',
             'role' => 'kurikulum',
-            'username' => '192010031',
             'email' => 'kurikulum@gmail.com',
             'password' => Hash::make('password')
         ]);

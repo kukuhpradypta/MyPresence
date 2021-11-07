@@ -30,7 +30,7 @@ class AuthenticatedSessionController extends Controller
     {
         if (Auth::guard('siswa')->attempt(['nipd' => $request->username, 'password' => $request->password])) {
             return redirect('/');
-        } elseif (Auth::guard('guru')->attempt(['username' => $request->username, 'password' => $request->password])) {
+        } elseif (Auth::guard('guru')->attempt(['nomor_induk' => $request->username, 'password' => $request->password])) {
             return redirect('/');
         }
 

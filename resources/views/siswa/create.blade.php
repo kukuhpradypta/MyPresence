@@ -17,10 +17,10 @@
                                 @csrf
                                 <div class="form-group">
                                     <label class="font-weight-bold">Nama</label>
-                                    <input type="text" class="form-control @error('namasiswa') is-invalid @enderror"
-                                        name="namasiswa" placeholder="Masukan Nama Siswa">
+                                    <input type="text" class="form-control @error('nama') is-invalid @enderror"
+                                        name="nama" placeholder="Masukan Nama Siswa">
 
-                                    @error('namasiswa')
+                                    @error('nama')
                                         <div class="alert alert-danger mt-2">
                                             {{ $message }}
                                         </div>
@@ -48,18 +48,6 @@
                                         @endforeach
                                     </select>
                                     @error('kelas')
-                                        <div class="alert alert-danger mt-2">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="font-weight-bold">NIPD</label>
-                                    <input type="text" class="form-control @error('nipd') is-invalid @enderror"" name="
-                                        nipd" placeholder="Masukan NIPD">
-
-                                    @error('nipd')
                                         <div class="alert alert-danger mt-2">
                                             {{ $message }}
                                         </div>

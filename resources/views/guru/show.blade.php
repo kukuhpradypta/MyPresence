@@ -14,24 +14,20 @@
                             <tbody>
                                 <tr>
                                     <td>Nama guru</td>
-                                    <td>{{ old('namaguru', $guru->namaguru) }}</td>
+                                    <td>{{ old('namaguru', $guru->nama) }}</td>
                                 </tr>
                                 <tr>
                                     <td>NIGN</td>
-                                    <td>{{ old('nign', $guru->nign) }}</td>
+                                    <td>{{ old('nign', $guru->nomor_induk) }}</td>
                                 </tr>
                                 <tr>
-                                    <td>Role</td>
+                                    <td>Jabatan</td>
                                     <td>{{ old('role', $guru->role) }}</td>
                                 </tr>
                                 <tr>
                                     <td>Foto</td>
-                                    <td><img src="{{ asset('foto/gurus', $guru->Foto) }}" class="rounded"
+                                    <td><img src="{{ asset('foto/gurus', $guru->foto) }}" class="rounded"
                                             style="max-width: 350px;height:200px;"></td>
-                                </tr>
-                                <tr>
-                                    <td>Username</td>
-                                    <td>{!! $guru->username !!}</td>
                                 </tr>
                                 <tr>
                                     <td>Email</td>
