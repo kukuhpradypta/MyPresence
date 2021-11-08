@@ -17,8 +17,8 @@
                                 @csrf
                                 <div class="form-group">
                                     <label class="font-weight-bold">Nama</label>
-                                    <input type="text" class="form-control @error('nama') is-invalid @enderror"
-                                        name="nama" placeholder="Masukan Nama Siswa">
+                                    <input type="text" class="form-control @error('nama') is-invalid @enderror" name="nama"
+                                        placeholder="Masukan Nama Siswa">
 
                                     @error('nama')
                                         <div class="alert alert-danger mt-2">
@@ -41,13 +41,13 @@
 
                                 <div class="form-group">
                                     <label class="font-weight-bold">Kelas</label>
-                                    <select name="kelas" class="custom-select form-control-border border-width-2"
+                                    <select name="kelas_id" class="custom-select form-control-border border-width-2"
                                         id="exampleSelectBorderWidth2">
                                         @foreach ($kelastb as $kelas)
                                             <option value="{{ $kelas->id }}">{{ $kelas->name }}</option>
                                         @endforeach
                                     </select>
-                                    @error('kelas')
+                                    @error('kelas_id')
                                         <div class="alert alert-danger mt-2">
                                             {{ $message }}
                                         </div>
@@ -56,8 +56,8 @@
 
                                 <div class="form-group">
                                     <label class="font-weight-bold">Email</label>
-                                    <input type="text" class="form-control @error('email') is-invalid @enderror"" name="
-                                        email" placeholder="Masukan Email">
+                                    <input type="text" class="form-control @error('email') is-invalid @enderror"
+                                        name="email" placeholder="Masukan Email">
 
                                     @error('email')
                                         <div class="alert alert-danger mt-2">

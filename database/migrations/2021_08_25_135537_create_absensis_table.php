@@ -19,12 +19,12 @@ class CreateAbsensisTable extends Migration
             $table->string('kelas');
             $table->enum('absen', ['hadir', 'izin', 'alpa'])->default('alpa');
             $table->string('keterangan')->nullable();
-            $table->date('hari');
-            $table->date('tanggal');
-            $table->date('bulan');
-            $table->date('tahun');
+            $table->string('hari');
+            $table->string('tanggal');
+            $table->string('bulan');
+            $table->string('tahun');
             $table->time('jam_masuk');
-            $table->time('jam_pulang');
+            $table->time('jam_pulang')->nullable();
             $table->timestamps();
         });
     }

@@ -11,6 +11,7 @@ use App\Models\Siswa;
 use App\Models\Kelas;
 use App\Models\Mapel;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class AbsenController extends Controller
 {
@@ -72,95 +73,46 @@ class AbsenController extends Controller
 
         $no_kartu = $request->no_kartu;
 
-        $siswa = Siswa::all()->where('no_kartu', $no_kartu);
-        $absensi = Absensi::all()->where('siswa', $siswa->nipd)
+        $siswa = Siswa::all()->where('no_kartu', $no_kartu)->first();
+        $absensi = Absensi::all()->where('siswa', $no_kartu)
                                 ->where('hari', $hari)
                                 ->where('tanggal', $tanggal)
                                 ->where('bulan', $bulan)
                                 ->where('tahun', $tahun);
-
         if( $absensi->count() ) {
-            $update = Absensi::where('siswa', $siswa->nipd)->update([
+            $update = Absensi::where('siswa', $no_kartu)->update([
                 'jamkeluar'     => $jam,
             ]);
             if($update){
                 //redirect dengan pesan sukses
-                return redirect()->route('blog.index')->with(['success' => 'Data Berhasil Diupdate!']);
+                return redirect()->route('absen.create')->with(['success' => 'Data Berhasil Diupdate!']);
             }else{
                 //redirect dengan pesan error
-                return redirect()->route('blog.index')->with(['error' => 'Data Gagal Diupdate!']);
+                return redirect()->route('absen.create')->with(['error' => 'Data Gagal Diupdate!']);
             }
         } elseif ( $siswa->count() ) {
-            $jadwal = Jadwalmapel::all()->where('kelas', $siswa->kelas)
-                            ->where('hari', $hari)->first();
-            $jadwal1 = Jadwalmapel::all()->where('kelas', $siswa->kelas)
-                            ->where('hari', $hari);
-            $mapel = Mapel::all()->where('name', $jadwal1->mapel);
-            if ( $jam > $jadwal->awal ) {
                 $absensi = Absensi::create([
-                    'siswa' => $siswa->nipd,
-                    'kelas' => $siswa->kelas,
-                    'absen' => $hadir,
+                    'siswa' => $no_kartu,
+                    'kelas' => $siswa->kelas->name,
+                    'absen' => 'hadir',
                     'keterangan' => 'Telat',
                     'hari' => $hari,
                     'tanggal' => $tanggal,
                     'bulan' => $bulan,
                     'tahun' => $tahun,
-                    'jam_masuk' => $jam
-                ]);
-
-                $absensi = AbsensiMapel::create([
-                    'siswa' => $siswa->nipd,
-                    'kelas' => $siswa->kelas,
-                    'mapel' => $mapel->name,
-                    'absen' => $hadir,
-                    'hari' => $hari,
-                    'tanggal' => $tanggal,
-                    'bulan' => $bulan,
-                    'tahun' => $tahun,
+                    'jam_masuk' => $jam,
+                    'jam_pulang' => $jam
                 ]);
 
                 if($absensi){
                     //redirect dengan pesan sukses
-                    return redirect()->route('absensi.offline')->with(['success' => 'Data Berhasil Disimpan!']);
+                    return redirect()->route('absen.create')->with(['success' => 'Data Berhasil Disimpan!']);
                 }else{
                     //redirect dengan pesan error
-                    return redirect()->route('absensi.offline')->with(['error' => 'Data Gagal Disimpan!']);
+                    return redirect()->route('absen.create')->with(['error' => 'Data Gagal Disimpan!']);
                 }
-            } else {
-                $absensi = Absensi::create([
-                    'siswa' => $siswa->nipd,
-                    'kelas' => $siswa->kelas,
-                    'absen' => $hadir,
-                    'keterangan' => 'Tepat Waktu',
-                    'hari' => $hari,
-                    'tanggal' => $tanggal,
-                    'bulan' => $bulan,
-                    'tahun' => $tahun,
-                    'jam_masuk' => $jam
-                ]);
-
-                $absensi = AbsensiMapel::create([
-                    'siswa' => $siswa->nipd,
-                    'kelas' => $siswa->kelas,
-                    'mapel' => $mapel->name,
-                    'absen' => $hadir,
-                    'hari' => $hari,
-                    'tanggal' => $tanggal,
-                    'bulan' => $bulan,
-                    'tahun' => $tahun,
-                ]);
-                if($absensi){
-                    //redirect dengan pesan sukses
-                    return redirect()->route('absensi.offline')->with(['success' => 'Data Berhasil Disimpan!']);
-                }else{
-                    //redirect dengan pesan error
-                    return redirect()->route('absensi.offline')->with(['error' => 'Data Gagal Disimpan!']);
-                }
-            }
         } else{
-            return redirect()->route('absensi.offline')->with(['gagal' => 'Maaf! Akun ini tidak ketemu']);
-
+            return redirect()->route('absen.create')->with(['gagal' => 'Maaf! Akun ini tidak ketemu']);
         }
     }
 

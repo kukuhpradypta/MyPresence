@@ -31,8 +31,7 @@ class SiswaController extends Controller
         $this->validate($request, [
             'nisn'      => 'required',
             'nama'      => 'required',
-            'kelas'  => 'required',
-            'nipd'      => 'required',
+            'kelas_id'  => 'required',
             'email'     => 'required',
             'password'  => 'required',
             'no_kartu'  => 'required'
@@ -43,9 +42,9 @@ class SiswaController extends Controller
         $siswa = Siswa::create([
             'nama'     => $request->nama,
             'nisn'     => $request->nisn,
-            'kelas'     => $request->kelas,
+            'kelas_id'     => $request->kelas_id,
             'foto'     => 'default.png',
-            'nipd'     => $request->nipd,
+            'nipd'     => $request->nisn,
             'email'     => $request->email,
             'password' => Hash::make($request->password),
             'no_kartu' => $request->no_kartu,
@@ -69,7 +68,7 @@ class SiswaController extends Controller
             'nama'     => 'required',
             'nisn'     => 'required|unique',
             'kelas_id'     => 'required',
-            'email'     => 'required|email',
+            'email'     => 'required',
             'no_kartu'     => 'required',
         ]);
 

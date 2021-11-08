@@ -23,19 +23,18 @@ class GuruController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'nama' => 'required',
             'nomor_induk' => 'required',
+            'nama' => 'required',
             'role' => 'required',
-            'username' => 'required',
-            'email' => 'required|email',
+            'email' => 'required',
             'password' => 'required',
         ]);
 
         //upload foto
 
         $guru = Guru::create([
-            'nama' => $request->nama,
             'nomor_induk' => $request->nomor_induk,
+            'nama' => $request->nama,
             'role' => $request->role,
             'foto' => 'default.png',
             'email' => $request->email,

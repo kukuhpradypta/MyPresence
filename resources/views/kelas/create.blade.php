@@ -46,7 +46,7 @@
                                     <select name="walas_id" class="custom-select form-control-border border-width-2"
                                         id="exampleSelectBorderWidth2">
                                         @foreach ($walas as $kelas)
-                                            <option value="{{ $kelas->namaguru }}">{{ $kelas->namaguru }}</option>
+                                            <option value="{{ $kelas->nama }}">{{ $kelas->nama }}</option>
                                         @endforeach
                                     </select>
                                     @error('walas_id')
@@ -60,7 +60,7 @@
                                     <select name="bk" class="custom-select form-control-border border-width-2"
                                         id="exampleSelectBorderWidth2">
                                         @foreach ($bk as $kelas)
-                                            <option value="{{ $kelas->namaguru }}">{{ $kelas->namaguru }}</option>
+                                            <option value="{{ $kelas->nama }}">{{ $kelas->nama }}</option>
                                         @endforeach
                                     </select>
                                     @error('bk')

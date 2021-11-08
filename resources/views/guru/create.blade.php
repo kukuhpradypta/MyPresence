@@ -70,12 +70,11 @@
 
                                 <div class="form-group">
                                     <label class="font-weight-bold">Email</label>
-                                    <input type="text" class="form-control @error('email') is-invalid @enderror"" name="
-                                        email" placeholder="Masukan Email Address">
+                                    <input type="text" class="form-control @error('email') is-invalid @enderror" name="email" placeholder="Masukan Email Address">
 
                                     @error('email')
                                         <div class="alert alert-danger mt-2">
-                                            {{ $message }}
+                                            {{ $message }}x`
                                         </div>
                                     @enderror
                                 </div>
